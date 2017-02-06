@@ -4,7 +4,7 @@
   
   class Area
   {
-    private $name;
+    private $name;    
     
     public function __construct(string $name)
     {

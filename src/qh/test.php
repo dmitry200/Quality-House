@@ -7,6 +7,8 @@
   use QH\Structures\Area;
   
   $a = new Area("My");
+  $AM = new Areas($DB);
   
+  var_dump($AM->remove("My"));
   
 ?>

@@ -5,7 +5,8 @@ USE `qh`;
 
 CREATE TABLE `areas` (
   id_area INT(11) AUTO_INCREMENT PRIMARY KEY,
-  name CHAR(255) NOT NULL
+  name CHAR(255) NOT NULL,
+  UNIQUE(name)
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
 CREATE TABLE `rcs` (
@@ -33,8 +34,8 @@ CREATE TABLE `area_rc` (
 
 
 
-/* Связка таблицы "areas" с таблицей "area_rc" */
-ALTER TABLE `areas` ADD CONSTRAINT area_rc FOREIGN KEY(`id_area`) REFERENCES `area_rc` (`id_area`) ON UPDATE CASCADE;
+/* РЎРІСЏР·РєР° С‚Р°Р±Р»РёС†С‹ "areas" СЃ С‚Р°Р±Р»РёС†РµР№ "area_rc" */
+ALTER TABLE `area_rc` ADD CONSTRAINT area_rc FOREIGN KEY(`id_area`) REFERENCES `areas` (`id_area`) ON UPDATE CASCADE;
 
-/* Связка таблицы "areas" с таблицей "area_rc" */
-ALTER TABLE `rcs` ADD CONSTRAINT rc_area FOREIGN KEY(`id_rc`) REFERENCES `area_rc` (`id_rc`) ON UPDATE CASCADE;
+/* РЎРІСЏР·РєР° С‚Р°Р±Р»РёС†С‹ "areas" СЃ С‚Р°Р±Р»РёС†РµР№ "area_rc" */
+ALTER TABLE `area_rc` ADD CONSTRAINT rc_area FOREIGN KEY(`id_rc`) REFERENCES `rcs` (`id_rc`) ON UPDATE CASCADE;
