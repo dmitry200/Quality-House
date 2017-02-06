@@ -1,14 +1,19 @@
 <?php
   
   require_once "../start.php";
-  require_once "classes/areas.class.php";
+  require_once "classes/rcs.class.php";
+  require_once "classes/builders.class.php";
   
-  use QH\Classes\Areas;
-  use QH\Structures\Area;
+  use QH\Classes\Builders;
+  use QH\Structures\Builder;
+  use QH\Classes\RCS;
+  use QH\Structures\RC;
   
-  $a = new Area("My");
-  $AM = new Areas($DB);
+  $rc = new RC("Имя", BUILD, "ПИК", "Address");
   
-  var_dump($AM->remove("My"));
+  $rcs = new RCS($DB);
+  
+  //$rcs->remove("Имя");
+  //var_dump($rcs->add($rc));
   
 ?>
