@@ -4,8 +4,6 @@
   require_once "classes/rcs.class.php";
   require_once "classes/builders.class.php";
   
-  use QH\Classes\Builders;
-  use QH\Structures\Builder;
   use QH\Classes\RCS;
   use QH\Structures\RC;
   

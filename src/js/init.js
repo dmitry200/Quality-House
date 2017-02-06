@@ -5,26 +5,38 @@ $(function(){
 		fill: '#fff'
 	};
 	arr = new Array();
-		
+	var color = "";
 	
 	for (var country in paths)
 	{
 		var obj = r.path(paths[country].path);
 		
-		obj.attr(attributes);
 		
 		arr[obj.id] = country;
+    
+    /*
+      less #EEEEEE
+           #D6E685
+           #8CC665
+           #44A340
+      more #1E6823
+    */
+    
+    if (paths[country].count_rc >= 0 && paths[country].count_rc < 15) {
+      color = "#EEEEEE";
+    } else if (paths[country].count_rc >= 15 && paths[country].count_rc < 30) {
+      color = "#D6E685";
+    } else if (paths[country].count_rc >= 30 && paths[country].count_rc < 45) {
+      color = "#8CC665";
+    } else if (paths[country].count_rc >= 45 && paths[country].count_rc < 60) {
+      color = "#44A340";
+    } else if (paths[country].count_rc >= 60) {
+      color = "#1E6823";
+    }
+    
+		obj.attr({fill: color});
 		
-		obj.hover(function(){
-			this.animate({
-				'fill': 'lightgreen'
-			}, 300);
-		}, function(){
-			this.animate({
-				fill: attributes.fill
-			}, 300);
-		})
-		.click(function(){
+		obj.click(function(){
 			document.location.hash = arr[this.id];
 			var point = this.getBBox(0);
 			
@@ -46,7 +58,7 @@ $(function(){
 			var t = $(this),
 				parent = t.parent('.point');
 			
-			parent.fadeOut(function(){
+        parent.fadeOut(function(){
 				parent.remove();
 			});
 			return false;

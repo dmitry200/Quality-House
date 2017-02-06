@@ -57,6 +57,7 @@ CREATE TABLE `homes` (
   id_home INT(11) PRIMARY KEY,
   count_floors INT(11) NOT NULL,
   count_proch INT(11) NOT NULL,
+  count_flats INT(11) NOT NULL,
   INDEX(id_home)
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
@@ -66,7 +67,9 @@ CREATE TABLE `flats` (
   square INT(11) NOT NULL,
   balcony BOOLEAN NOT NULL,
   repair CHAR(255) NOT NULL,
-  INDEX(id_flat)
+  status INT(11) NOT NULL,
+  INDEX(id_flat),
+  INDEX(status)
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
 CREATE TABLE `home_flat` (
@@ -76,6 +79,13 @@ CREATE TABLE `home_flat` (
   porch INT(11) NOT NULL,
   floor INT(11) NOT NULL,
   PRIMARY KEY(id_home, id_flat)
+) ENGINE = InnoDB CHARACTER SET = UTF8;
+
+CREATE TABLE `flat_status` (
+  id_status INT(11) PRIMARY KEY,
+  description CHAR(255) NOT NULL,
+  UNIQUE(description),
+  INDEX(id_status)
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
 /* Связка таблицы "area_rc" с таблицей "areas" */
@@ -101,3 +111,6 @@ ALTER TABLE `home_flat` ADD CONSTRAINT home_flat FOREIGN KEY(`id_flat`) REFERENC
 
 /* Связка таблицы "home" с таблицей "home_flat" */
 ALTER TABLE `home_flat` ADD CONSTRAINT flat_home FOREIGN KEY(`id_home`) REFERENCES `homes` (`id_home`) ON UPDATE CASCADE;
+
+/* Связка таблицы "flats" с таблицей "flat_status" */
+ALTER TABLE `flats` ADD CONSTRAINT flat_status FOREIGN KEY(`status`) REFERENCES `flat_status` (`id_status`) ON UPDATE CASCADE;

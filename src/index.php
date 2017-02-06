@@ -11,15 +11,11 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<div id="map"></div>
-		</div>
-		
-		<div class="wrapper">
-			<div id="canvas_co-+ntainer"></div>
-		</div>
-		
-		<div class="my">
-			<h1>Прочие действия</h1>
+			<div id="map" style="border: 1px solid black;"></div>
+      <div class="my">
+        <h1 align="center">Quality House</h1>
+        <hr>
+      </div>
 		</div>
 	</body>
 </html>
