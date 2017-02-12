@@ -51,6 +51,13 @@
       return false;
     }
     
+    public function getAll()
+    {
+      
+    }
+    
   }
+  
+  
   
 ?>

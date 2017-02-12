@@ -43,3 +43,8 @@ a img {
 	border:none;
 }
 
+
+.row{
+  display: flex;
+  flex-direction: column;
+}

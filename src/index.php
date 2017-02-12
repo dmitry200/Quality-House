@@ -1,3 +1,8 @@
+<?php
+  
+  require_once "start.php";
+  
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,9 +18,37 @@
 		<div class="wrapper">
 			<div id="map" style="border: 1px solid black;"></div>
       <div class="my">
-        <h1 align="center">Quality House</h1>
+        <div class="row">
+          <h1 align="center">Quality House</h1>
+        </div>
         <hr>
+        <div id="info" class="row">
+          
+          
+          
+        </div>
       </div>
 		</div>
+    
+    <script type="text/javascript">
+      
+      function onAreaClick(name) {
+        var str = new String(name);
+        var area_name = str.substr(str.indexOf("#")+1, str.length);
+        
+        $.ajax({
+          url: "php/getAll.php",
+          type: "POST",
+          data: "area=" + area_name,
+          success: function(replay){
+            $("#info").html("");
+            $("#info").html(replay);
+          }
+        });
+        
+      }
+      
+    </script>
+    
 	</body>
 </html>

@@ -44,16 +44,17 @@ $(function(){
 			$('#map').after($('<div />').addClass('point'));
 			
 			$('.point')
-			.html(paths[arr[this.id]].name)
+			.html( '<a onclick="onAreaClick(this);" href="#' + paths[arr[this.id]].name + '">' + paths[arr[this.id]].name + '</a>')
 			.prepend($('<a />').attr('href', '#').addClass('close').text('Закрыть'))
 			.css({
 				left: point.x+(point.width/2)-80,
 				top: point.y+(point.height/2)-20
 			})
-			.fadeIn();
+			.fadeIn()
 			
 		});
-		
+   
+    
 		$('.point').find('.close').live('click', function(){
 			var t = $(this),
 				parent = t.parent('.point');
@@ -65,7 +66,7 @@ $(function(){
 		});
 		
 	}
-		
-			
+  
 });
-
+ 
+    
