@@ -6,6 +6,8 @@ DROP PROCEDURE IF EXISTS addHome;
 DROP PROCEDURE IF EXISTS addFlat;
 DROP PROCEDURE IF EXISTS changeStatusRC;
 DROP PROCEDURE IF EXISTS changeStatusFlat;
+DROP PROCEDURE IF EXISTS getHomes;
+DROP PROCEDURE IF EXISTS getFlats;
 
 DELIMITER //
 
@@ -53,6 +55,17 @@ CREATE PROCEDURE changeStatusFlat(rc_name char(255), home_addr char(255), id_flt
 BEGIN
 	UPDATE `flats` SET `stat`=(SELECT `id_status` FROM `flat_status` WHERE `description`=stat) WHERE 
 		`id_flat`=(select `id_flat` FROM `home_flat` WHERE `id_flat`=4 AND `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)));
+END;
+
+CREATE PROCEDURE getHomes(rc_name char(255))
+BEGIN
+	SELECT `address`, `count_floors`, `count_proch`, `count_flats` FROM `homes` INNER JOIN `rc_home` ON homes.id_home=rc_home.id_home WHERE id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name);
+END;
+
+CREATE PROCEDURE getFlats(rc_name char(255), home_addr char(255))
+BEGIN
+	SELECT `count_rooms`, `square`, `balcony`, `porch`, `floor`, `price_flat`, `stat` FROM `flats` f INNER JOIN `home_flat` hf ON f.id_flat=hf.id_flat 
+	WHERE `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name));
 END;
 
 //
