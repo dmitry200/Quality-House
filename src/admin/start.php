@@ -5,8 +5,10 @@
 	require_once "../engine/cform.php";
 	require_once "../engine/settings.php";
   
-  require_once "../qh/classes/rcs.class.php";
-  require_once "../qh/classes/builders.class.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/rcs.class.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/builders.class.php";
+  
+  use QH\Classes\RCS;
   
   $CT = new CTemplater("templates/tpl", "templates/tpl_c", "templates/configs", "templates/cache");
   

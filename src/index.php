@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Строим интерактивную карту с помощью Raphael | Демонстрация для сайта RUSELLER.COM</title>
+		<title>QH | Главная</title>
 		<meta charset="utf-8">
 		<link href="css/default.css" rel="stylesheet" type="text/css">
 		<script src="js/jquery.js" type="text/javascript"></script>
@@ -23,8 +23,6 @@
         </div>
         <hr>
         <div id="info" class="row">
-          
-          
           
         </div>
       </div>

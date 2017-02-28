@@ -1,7 +1,6 @@
 <?php 
 
   
-  
-  echo $_POST['area'];
+  echo "<h1>".$_POST['area']."</h1>";
   
 ?>
