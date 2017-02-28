@@ -15,19 +15,9 @@
     {
       if ($rc instanceof RC) {
         
-        $add_rc_query = $this->dbc()->prepare("INSERT INTO `rcs`
-          (`status`, `id_builder`, `name`, `address`)
-          VALUES
-          (:status, :id_builder, :name, :address)
-        ");
+        $add_rc_query = $this->dbc()->prepare("call addRC(:id_builder, :name, :address)");
         
-        $add_rc_query->bindValue(":status", $rc->getStatus());
-        $add_rc_query->bindValue(
-          ":id_builder",
-          $this->get("SELECT `id_builder` FROM `builders` WHERE `name`=:name", [":name" => $rc->getBuilder()])[0]['id_builder']
-        );
-        $add_rc_query->bindValue(":name", $rc->getName());
-        $add_rc_query->bindValue(":address", $rc->getAddress());
+        
         
         return $add_rc_query->execute(); 
       }

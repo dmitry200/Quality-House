@@ -15,11 +15,7 @@
     {
       if ($builder instanceof Builder) {
         
-        $add_builder_query = $this->dbc()->prepare("INSERT INTO `builders`
-          (`name`)
-          VALUES
-          (:name)
-        ");
+        $add_builder_query = $this->dbc()->prepare("call addBuilder(:name);");
         
         $add_builder_query->bindValue(":name", $builder->getName());
         
@@ -38,6 +34,18 @@
         return $remove_builder_query->execute();
       }
       else return false;
+    }
+    
+    public function getAll() : array
+    {
+      $db_builders = $this->get("SELECT * FROM `builders` ORDER BY `name`");
+      
+      $builders = array();
+      foreach ($db_builders as $db_builder) {
+        $builders[] = new Builder($db_builder['name']);
+      }
+      
+      return $builders;
     }
     
     public function change($old_name, $new_name)

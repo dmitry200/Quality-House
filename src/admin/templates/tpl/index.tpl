@@ -10,35 +10,43 @@
 	</head>
 	<body>
     <header class="container">
-      
+        
     </header>
     
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-8">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
              <fieldset>
                <legend>Жилые комплексы</legend>
                 <table class="table table-bordered">
                  <tr>
-                   <td>№</td>
-                   <td>Название</td>
-                   <td>Застройщик</td>
-                   <td>Адрес</td>
-                   <td>Статус</td>
+                   <th>Название</th>
+                   <th>Застройщик</th>
+                   <th>Адрес</th>
+                   <th>Статус</th>
                  </tr>
+                  {foreach from=$rcs item=rc}
+                    <tr>
+                      <td>{$rc->getName()}</td>
+                    </tr>
+                  {/foreach}
                </table>
              </fieldset>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <fieldset>
                 <legend>Застройщики</legend>
                 <table class="table table-bordered">
                   <tr>
-                    <td>№</td>
-                    <td>Название</td>
+                    <th>Название</th>
                   </tr>
+                  {foreach from=$builders item=builder}
+                    <tr>
+                      <td>{$builder->getName()}</td>
+                    </tr>
+                  {/foreach}
                 </table>
               </fieldset>
             </div>
@@ -47,8 +55,8 @@
                 <legend>Районы</legend>
                 <table class="table table-bordered">
                   <tr>
-                    <td>№</td>
-                    <td>Название</td>
+                    <th>№</th>
+                    <th>Название</th>
                   </tr>
                 </table>
               </fieldset>
@@ -65,8 +73,13 @@
                     <label>Название</label>
                     <input type="text" name="builder" class="form-control">
                   </div>
-                  
+                  <div class="form-group">
+                    <input type="submit" name="addBuilderButton" class="btn btn-primary">
+                  </div>
                 </form>
+              </fieldset>
+              <fieldset>
+                <legend></legend>
               </fieldset>
             </div>
           </div>
