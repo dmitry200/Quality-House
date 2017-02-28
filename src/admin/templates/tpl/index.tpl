@@ -18,26 +18,29 @@
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-8">
-             <fieldset>
+            <fieldset>
                <legend>Жилые комплексы</legend>
-                <table class="table table-bordered">
-                 <tr>
-                   <th>Район</th>
-                   <th>Название</th>
-                   <th>Застройщик</th>
-                   <th>Адрес</th>
-                   <th>Статус</th>
-                 </tr>
-                  {foreach from=$rcs item=rc}
-                    <tr>
-                      <td>{$rc->getAreaName()}</td>
-                      <td>{$rc->getName()}</td>
-                      <td>{$rc->getBuilder()}</td>
-                      <td>{$rc->getAddress()}</td>
-                      <td>{$rc->getTextStatus()}</td>
-                    </tr>
-                  {/foreach}
-               </table>
+                {foreach from=$rcsByArea item=_rcs key=area}
+                  <fieldset>
+                    <legend>{$area}</legend>
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>Название</th>
+                        <th>Застройщик</th>
+                        <th>Адрес</th>
+                        <th>Статус</th>
+                      </tr>
+                      {foreach from=$_rcs item=rc}
+                       <tr>
+                         <td>{$rc->getName()}</td>
+                         <td>{$rc->getBuilder()}</td>
+                         <td>{$rc->getAddress()}</td>
+                         <td>{$rc->getTextStatus()}</td>
+                       </tr>
+                      {/foreach}
+                    </table>
+                  </fieldset>
+                {/foreach}
              </fieldset>
             </div>
             <div class="col-md-4">

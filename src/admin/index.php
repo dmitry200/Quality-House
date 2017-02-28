@@ -47,16 +47,26 @@
     }
     
     if (!empty($_POST['changeStatusRCButton'])) {
-      $rc_name = htmlspecialchars($_POST['']);
-      $rc_status = htmlspecialchars($_POST['']);
+      $rc_name = htmlspecialchars($_POST['rc_name']);
+      $rc_status = htmlspecialchars($_POST['rc_status']);
       
-      
+      if ($RCM->changeStatus($rc_name, $rc_status)) {
+        CTools::Redirect(THIS);
+      }
+    }
+    
+    $rcs = $RCM->getAll();
+    $rcsByArea = array();
+    for ($i = 0; $i < count($rcs); $i++) {
+      $rcsByArea[$rcs[$i]->getAreaName()][] = $rcs[$i];
     }
     
     $CT->assign("areas", $AM->getAll());
     $CT->assign("builders", $Builders->getAll());
+    $CT->assign("rcsByArea", $rcsByArea);
     $CT->assign("rcs", $RCM->getAll());
     $CT->assign("statutses", $RCM->getStatuses());
+    
     
     $CT->Show("index.tpl");
   } else {

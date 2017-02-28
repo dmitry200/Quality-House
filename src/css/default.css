@@ -43,6 +43,9 @@ a img {
 	border:none;
 }
 
+#info{
+  padding: 10px;
+}
 
 .row{
   display: flex;

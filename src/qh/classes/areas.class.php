@@ -4,9 +4,11 @@
   
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/qh.class.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/structures/area.class.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/structures/rc.class.php";
   
   use QH\Classes\QH;
   use QH\Structures\Area;
+  use QH\Structures\RC;
   
   class Areas extends QH
   {
@@ -46,6 +48,23 @@
       }
       
       return $areas;
+    }
+    
+    public function getRCS(string $area_name)
+    {
+      $db_rcs = $this->get("call getRCS(:area)", [":area" => $area_name]);
+      
+      $rcs = array();
+      foreach ($db_rcs as $db_rc) {
+        $new_rc = new RC($db_rc['rc_name'], $db_rc['rc_address'], $db_rc['rc_builder'], (int)$db_rc['rc_status']);
+        
+        $new_rc->setTextStatus($db_rc['rc_text_status']);
+        $new_rc->setArea($db_rc['rc_area_name']);
+        
+        $rcs[] = $new_rc;
+      }
+      
+      return $rcs;
     }
     
     public function change($old_name, $new_name)

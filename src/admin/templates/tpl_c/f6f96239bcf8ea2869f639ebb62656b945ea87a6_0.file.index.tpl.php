@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-02-28 18:16:30
+/* Smarty version 3.1.29, created on 2017-02-28 18:31:46
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58b5944ed73b02_80573520',
+  'unifunc' => 'content_58b597e27eb2b8_35830011',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1488294990,
+      1 => 1488295905,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58b5944ed73b02_80573520 ($_smarty_tpl) {
+function content_58b597e27eb2b8_35830011 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,48 +45,73 @@ function content_58b5944ed73b02_80573520 ($_smarty_tpl) {
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-8">
-             <fieldset>
+            <fieldset>
                <legend>Жилые комплексы</legend>
-                <table class="table table-bordered">
-                 <tr>
-                   <th>Район</th>
-                   <th>Название</th>
-                   <th>Застройщик</th>
-                   <th>Адрес</th>
-                   <th>Статус</th>
-                 </tr>
-                  <?php
-$_from = $_smarty_tpl->tpl_vars['rcs']->value;
+                <?php
+$_from = $_smarty_tpl->tpl_vars['rcsByArea']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_rc_0_saved_item = isset($_smarty_tpl->tpl_vars['rc']) ? $_smarty_tpl->tpl_vars['rc'] : false;
+$__foreach__rcs_0_saved_item = isset($_smarty_tpl->tpl_vars['_rcs']) ? $_smarty_tpl->tpl_vars['_rcs'] : false;
+$__foreach__rcs_0_saved_key = isset($_smarty_tpl->tpl_vars['area']) ? $_smarty_tpl->tpl_vars['area'] : false;
+$_smarty_tpl->tpl_vars['_rcs'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['area'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['_rcs']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['area']->value => $_smarty_tpl->tpl_vars['_rcs']->value) {
+$_smarty_tpl->tpl_vars['_rcs']->_loop = true;
+$__foreach__rcs_0_saved_local_item = $_smarty_tpl->tpl_vars['_rcs'];
+?>
+                  <fieldset>
+                    <legend><?php echo $_smarty_tpl->tpl_vars['area']->value;?>
+</legend>
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>Название</th>
+                        <th>Застройщик</th>
+                        <th>Адрес</th>
+                        <th>Статус</th>
+                      </tr>
+                      <?php
+$_from = $_smarty_tpl->tpl_vars['_rcs']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_rc_1_saved_item = isset($_smarty_tpl->tpl_vars['rc']) ? $_smarty_tpl->tpl_vars['rc'] : false;
 $_smarty_tpl->tpl_vars['rc'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['rc']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['rc']->value) {
 $_smarty_tpl->tpl_vars['rc']->_loop = true;
-$__foreach_rc_0_saved_local_item = $_smarty_tpl->tpl_vars['rc'];
+$__foreach_rc_1_saved_local_item = $_smarty_tpl->tpl_vars['rc'];
 ?>
-                    <tr>
-                      <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getAreaName();?>
+                       <tr>
+                         <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getName();?>
 </td>
-                      <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getName();?>
+                         <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getBuilder();?>
 </td>
-                      <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getBuilder();?>
+                         <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getAddress();?>
 </td>
-                      <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getAddress();?>
+                         <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getTextStatus();?>
 </td>
-                      <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getTextStatus();?>
-</td>
-                    </tr>
-                  <?php
-$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_0_saved_local_item;
+                       </tr>
+                      <?php
+$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_1_saved_local_item;
 }
-if ($__foreach_rc_0_saved_item) {
-$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_0_saved_item;
+if ($__foreach_rc_1_saved_item) {
+$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_1_saved_item;
 }
 ?>
-               </table>
+                    </table>
+                  </fieldset>
+                <?php
+$_smarty_tpl->tpl_vars['_rcs'] = $__foreach__rcs_0_saved_local_item;
+}
+if ($__foreach__rcs_0_saved_item) {
+$_smarty_tpl->tpl_vars['_rcs'] = $__foreach__rcs_0_saved_item;
+}
+if ($__foreach__rcs_0_saved_key) {
+$_smarty_tpl->tpl_vars['area'] = $__foreach__rcs_0_saved_key;
+}
+?>
              </fieldset>
             </div>
             <div class="col-md-4">
@@ -109,22 +134,22 @@ $_from = $_smarty_tpl->tpl_vars['builders']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_builder_1_saved_item = isset($_smarty_tpl->tpl_vars['builder']) ? $_smarty_tpl->tpl_vars['builder'] : false;
+$__foreach_builder_2_saved_item = isset($_smarty_tpl->tpl_vars['builder']) ? $_smarty_tpl->tpl_vars['builder'] : false;
 $_smarty_tpl->tpl_vars['builder'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['builder']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['builder']->value) {
 $_smarty_tpl->tpl_vars['builder']->_loop = true;
-$__foreach_builder_1_saved_local_item = $_smarty_tpl->tpl_vars['builder'];
+$__foreach_builder_2_saved_local_item = $_smarty_tpl->tpl_vars['builder'];
 ?>
                           <tr>
                             <td><?php echo $_smarty_tpl->tpl_vars['builder']->value->getName();?>
 </td>
                           </tr>
                         <?php
-$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_1_saved_local_item;
+$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_2_saved_local_item;
 }
-if ($__foreach_builder_1_saved_item) {
-$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_1_saved_item;
+if ($__foreach_builder_2_saved_item) {
+$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_2_saved_item;
 }
 ?>
                       </table>
@@ -148,22 +173,22 @@ $_from = $_smarty_tpl->tpl_vars['areas']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_area_2_saved_item = isset($_smarty_tpl->tpl_vars['area']) ? $_smarty_tpl->tpl_vars['area'] : false;
+$__foreach_area_3_saved_item = isset($_smarty_tpl->tpl_vars['area']) ? $_smarty_tpl->tpl_vars['area'] : false;
 $_smarty_tpl->tpl_vars['area'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['area']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['area']->value) {
 $_smarty_tpl->tpl_vars['area']->_loop = true;
-$__foreach_area_2_saved_local_item = $_smarty_tpl->tpl_vars['area'];
+$__foreach_area_3_saved_local_item = $_smarty_tpl->tpl_vars['area'];
 ?>
                           <tr>
                             <td><?php echo $_smarty_tpl->tpl_vars['area']->value->getName();?>
 </td>
                           </tr>
                         <?php
-$_smarty_tpl->tpl_vars['area'] = $__foreach_area_2_saved_local_item;
+$_smarty_tpl->tpl_vars['area'] = $__foreach_area_3_saved_local_item;
 }
-if ($__foreach_area_2_saved_item) {
-$_smarty_tpl->tpl_vars['area'] = $__foreach_area_2_saved_item;
+if ($__foreach_area_3_saved_item) {
+$_smarty_tpl->tpl_vars['area'] = $__foreach_area_3_saved_item;
 }
 ?>
                       </table>
@@ -187,20 +212,20 @@ $_from = $_smarty_tpl->tpl_vars['rcs']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_rc_3_saved_item = isset($_smarty_tpl->tpl_vars['rc']) ? $_smarty_tpl->tpl_vars['rc'] : false;
+$__foreach_rc_4_saved_item = isset($_smarty_tpl->tpl_vars['rc']) ? $_smarty_tpl->tpl_vars['rc'] : false;
 $_smarty_tpl->tpl_vars['rc'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['rc']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['rc']->value) {
 $_smarty_tpl->tpl_vars['rc']->_loop = true;
-$__foreach_rc_3_saved_local_item = $_smarty_tpl->tpl_vars['rc'];
+$__foreach_rc_4_saved_local_item = $_smarty_tpl->tpl_vars['rc'];
 ?>
                               <option><?php echo $_smarty_tpl->tpl_vars['rc']->value->getName();?>
 </option>
                             <?php
-$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_3_saved_local_item;
+$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_4_saved_local_item;
 }
-if ($__foreach_rc_3_saved_item) {
-$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_3_saved_item;
+if ($__foreach_rc_4_saved_item) {
+$_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_4_saved_item;
 }
 ?>
                           </select>
@@ -213,20 +238,20 @@ $_from = $_smarty_tpl->tpl_vars['statutses']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_status_4_saved_item = isset($_smarty_tpl->tpl_vars['status']) ? $_smarty_tpl->tpl_vars['status'] : false;
+$__foreach_status_5_saved_item = isset($_smarty_tpl->tpl_vars['status']) ? $_smarty_tpl->tpl_vars['status'] : false;
 $_smarty_tpl->tpl_vars['status'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['status']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['status']->value) {
 $_smarty_tpl->tpl_vars['status']->_loop = true;
-$__foreach_status_4_saved_local_item = $_smarty_tpl->tpl_vars['status'];
+$__foreach_status_5_saved_local_item = $_smarty_tpl->tpl_vars['status'];
 ?>
                               <option><?php echo $_smarty_tpl->tpl_vars['status']->value['description'];?>
 </option>
                             <?php
-$_smarty_tpl->tpl_vars['status'] = $__foreach_status_4_saved_local_item;
+$_smarty_tpl->tpl_vars['status'] = $__foreach_status_5_saved_local_item;
 }
-if ($__foreach_status_4_saved_item) {
-$_smarty_tpl->tpl_vars['status'] = $__foreach_status_4_saved_item;
+if ($__foreach_status_5_saved_item) {
+$_smarty_tpl->tpl_vars['status'] = $__foreach_status_5_saved_item;
 }
 ?>
                           </select>
@@ -280,20 +305,20 @@ $_from = $_smarty_tpl->tpl_vars['areas']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_area_5_saved_item = isset($_smarty_tpl->tpl_vars['area']) ? $_smarty_tpl->tpl_vars['area'] : false;
+$__foreach_area_6_saved_item = isset($_smarty_tpl->tpl_vars['area']) ? $_smarty_tpl->tpl_vars['area'] : false;
 $_smarty_tpl->tpl_vars['area'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['area']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['area']->value) {
 $_smarty_tpl->tpl_vars['area']->_loop = true;
-$__foreach_area_5_saved_local_item = $_smarty_tpl->tpl_vars['area'];
+$__foreach_area_6_saved_local_item = $_smarty_tpl->tpl_vars['area'];
 ?>
                         <option><?php echo $_smarty_tpl->tpl_vars['area']->value->getName();?>
 </option>
                       <?php
-$_smarty_tpl->tpl_vars['area'] = $__foreach_area_5_saved_local_item;
+$_smarty_tpl->tpl_vars['area'] = $__foreach_area_6_saved_local_item;
 }
-if ($__foreach_area_5_saved_item) {
-$_smarty_tpl->tpl_vars['area'] = $__foreach_area_5_saved_item;
+if ($__foreach_area_6_saved_item) {
+$_smarty_tpl->tpl_vars['area'] = $__foreach_area_6_saved_item;
 }
 ?>
                     </select>
@@ -314,21 +339,21 @@ $_from = $_smarty_tpl->tpl_vars['builders']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
-$__foreach_builder_6_saved_item = isset($_smarty_tpl->tpl_vars['builder']) ? $_smarty_tpl->tpl_vars['builder'] : false;
+$__foreach_builder_7_saved_item = isset($_smarty_tpl->tpl_vars['builder']) ? $_smarty_tpl->tpl_vars['builder'] : false;
 $_smarty_tpl->tpl_vars['builder'] = new Smarty_Variable();
 $_smarty_tpl->tpl_vars['builder']->_loop = false;
 foreach ($_from as $_smarty_tpl->tpl_vars['builder']->value) {
 $_smarty_tpl->tpl_vars['builder']->_loop = true;
-$__foreach_builder_6_saved_local_item = $_smarty_tpl->tpl_vars['builder'];
+$__foreach_builder_7_saved_local_item = $_smarty_tpl->tpl_vars['builder'];
 ?>
                           <option value="<?php echo $_smarty_tpl->tpl_vars['builder']->value->getName();?>
 "><?php echo $_smarty_tpl->tpl_vars['builder']->value->getName();?>
 </option>
                       <?php
-$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_6_saved_local_item;
+$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_7_saved_local_item;
 }
-if ($__foreach_builder_6_saved_item) {
-$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_6_saved_item;
+if ($__foreach_builder_7_saved_item) {
+$_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_7_saved_item;
 }
 ?>
                     </select>

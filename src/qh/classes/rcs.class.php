@@ -61,7 +61,7 @@
     {
       $change_status_query = $this->dbc()->prepare("call changeStatusRC(:rc_name, :status)");
       
-      $change_status_query->bindValue(":rc_name", $change_status_query);
+      $change_status_query->bindValue(":rc_name", $rc_name);
       $change_status_query->bindValue(":status", $status);
       
       return $change_status_query->execute();
