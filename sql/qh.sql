@@ -88,7 +88,7 @@ CREATE TABLE `flat_status` (
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
 
-INSERT INTO `flat_status` (`id_status`, `description`) VALUES (1, "Не садана");
+INSERT INTO `flat_status` (`id_status`, `description`) VALUES (1, "Не сдана");
 INSERT INTO `flat_status` (`id_status`, `description`) VALUES (2, "Сдана");
 
 /* Связка таблицы "area_rc" с таблицей "areas" */

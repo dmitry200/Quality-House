@@ -4,6 +4,8 @@ DROP PROCEDURE IF EXISTS addStatusRC;
 DROP PROCEDURE IF EXISTS addRC;
 DROP PROCEDURE IF EXISTS addHome;
 DROP PROCEDURE IF EXISTS addFlat;
+DROP PROCEDURE IF EXISTS changeStatusRC;
+DROP PROCEDURE IF EXISTS changeStatusFlat;
 
 DELIMITER //
 
@@ -44,7 +46,13 @@ END;
 
 CREATE PROCEDURE changeStatusRC(rc_name char(255), stat char(255))
 BEGIN
+	UPDATE `rcs` SET `stat`=(SELECT `id_status` FROM `rc_status` WHERE `description`=stat) WHERE `name`=rc_name;
+END;
 
+CREATE PROCEDURE changeStatusFlat(rc_name char(255), home_addr char(255), id_flt int, stat char(255))
+BEGIN
+	UPDATE `flats` SET `stat`=(SELECT `id_status` FROM `flat_status` WHERE `description`=stat) WHERE 
+		`id_flat`=(select `id_flat` FROM `home_flat` WHERE `id_flat`=4 AND `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)));
 END;
 
 //
