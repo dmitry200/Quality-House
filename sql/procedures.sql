@@ -1,4 +1,5 @@
 
+DROP PROCEDURE IF EXISTS addArea;
 DROP PROCEDURE IF EXISTS addBuilder;
 DROP PROCEDURE IF EXISTS addStatusRC;
 DROP PROCEDURE IF EXISTS addRC;
@@ -11,6 +12,11 @@ DROP PROCEDURE IF EXISTS getFlats;
 
 DELIMITER //
 
+CREATE PROCEDURE addArea(area_name char(255))
+BEGIN
+	INSERT INTO `areas` (`name`) VALUES (area_name);
+END;
+
 CREATE PROCEDURE addBuilder(b_name char(255))
 BEGIN
 	INSERT INTO `builders` (`name`) VALUES (b_name);
@@ -21,9 +27,10 @@ BEGIN
 	INSERT INTO `rc_status` (`description`) VALUES (`status_name`);
 END;
 
-CREATE PROCEDURE addRC(rc_name char(255), rc_addr char(255), rc_builder char(255))
+CREATE PROCEDURE addRC(area_name char(255), rc_name char(255), rc_addr char(255), rc_builder char(255), rc_stat int)
 BEGIN
-	INSERT INTO `rcs` (`name`, `address`, `id_builder`, `stat`) VALUES (rc_name, rc_addr, 1, (SELECT `id_builder` FROM `builders` WHERE `name`=rc_builder));
+	INSERT INTO `rcs` (`name`, `address`, `id_builder`, `stat`) VALUES (rc_name, rc_addr, (SELECT `id_builder` FROM `builders` WHERE `name`=rc_builder), rc_stat);
+	INSERT INTO `area_rc` (`id_area`, `id_rc`) VALUES ((SELECT `id_area` FROM `areas` WHERE `name`=area_name), (SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name));
 END;
 
 CREATE PROCEDURE addHome(rc_name char(255), addr char(255), count_flts int, count_flrs int, count_prch int)

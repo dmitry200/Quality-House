@@ -17,11 +17,12 @@
       <div class="row">
         <div class="col-md-8">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
              <fieldset>
                <legend>Жилые комплексы</legend>
                 <table class="table table-bordered">
                  <tr>
+                   <th>Район</th>
                    <th>Название</th>
                    <th>Застройщик</th>
                    <th>Адрес</th>
@@ -29,37 +30,94 @@
                  </tr>
                   {foreach from=$rcs item=rc}
                     <tr>
+                      <td>{$rc->getAreaName()}</td>
                       <td>{$rc->getName()}</td>
+                      <td>{$rc->getBuilder()}</td>
+                      <td>{$rc->getAddress()}</td>
+                      <td>{$rc->getTextStatus()}</td>
                     </tr>
                   {/foreach}
                </table>
              </fieldset>
             </div>
-            <div class="col-md-2">
-              <fieldset>
-                <legend>Застройщики</legend>
-                <table class="table table-bordered">
-                  <tr>
-                    <th>Название</th>
-                  </tr>
-                  {foreach from=$builders item=builder}
-                    <tr>
-                      <td>{$builder->getName()}</td>
-                    </tr>
-                  {/foreach}
-                </table>
-              </fieldset>
-            </div>
             <div class="col-md-4">
-              <fieldset>
-                <legend>Районы</legend>
-                <table class="table table-bordered">
-                  <tr>
-                    <th>№</th>
-                    <th>Название</th>
-                  </tr>
-                </table>
-              </fieldset>
+              <br>
+              <div class="panel-group" id="tables">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#tables" href="#builders">Застройщики</a>
+                    </h4>
+                  </div>
+                  <div id="builders" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th>Название</th>
+                        </tr>
+                        {foreach from=$builders item=builder}
+                          <tr>
+                            <td>{$builder->getName()}</td>
+                          </tr>
+                        {/foreach}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#tables" href="#areas">Районы</a>
+                    </h4>
+                  </div>
+                  <div id="areas" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <table class="table table-bordered">
+                        <tr>
+                          <th>Название</th>
+                        </tr>
+                        {foreach from=$areas item=area}
+                          <tr>
+                            <td>{$area->getName()}</td>
+                          </tr>
+                        {/foreach}
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#tables" href="#changeStatusRC">Изменить стаус ЖК</a>
+                    </h4>
+                  </div>
+                  <div id="changeStatusRC" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <form name="changeStatusRCForm" method="POST">
+                        <div class="form-group">
+                          <label>ЖК</label>
+                          <select name="rc_name" class="form-control">
+                            {foreach from=$rcs item=rc}
+                              <option>{$rc->getName()}</option>
+                            {/foreach}
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label>Статус</label>
+                          <select name="rc_status" class="form-control">
+                            {foreach from=$statutses item=status}
+                              <option>{$status['description']}</option>
+                            {/foreach}
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <input type="submit" name="changeStatusRCButton" class="btn btn-primary">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -79,7 +137,48 @@
                 </form>
               </fieldset>
               <fieldset>
-                <legend></legend>
+                <legend>Добавить район</legend>
+                <form name="addAreaForm" method="POST">
+                  <div class="form-group">
+                    <label>Название</label>
+                    <input type="text" name="area_name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" name="addAreaButton" class="btn btn-primary">
+                  </div>
+                </form>
+              </fieldset>
+              <fieldset>
+                <legend>Добавить ЖК</legend>
+                <form name="addRCForm" method="POST">
+                  <div class="form-group">
+                    <label>Район</label>
+                    <select name="rc_area_name" class="form-control">                      
+                      {foreach from=$areas item=area}
+                        <option>{$area->getName()}</option>
+                      {/foreach}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Название</label>
+                    <input type="text" name="rc_name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" name="rc_address" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Застройщик</label>
+                    <select name="rc_builder" class="form-control">
+                      {foreach from=$builders item=builder}
+                          <option value="{$builder->getName()}">{$builder->getName()}</option>
+                      {/foreach}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" name="addRCButton" class="btn btn-primary">
+                  </div>
+                </form>
               </fieldset>
             </div>
           </div>

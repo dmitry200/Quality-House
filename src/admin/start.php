@@ -5,10 +5,12 @@
 	require_once "../engine/cform.php";
 	require_once "../engine/settings.php";
   
+  require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/areas.class.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/rcs.class.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/builders.class.php";
   
   use QH\Classes\RCS;
+  use QH\Classes\Areas;
   use QH\Classes\Builders;
   
   $CT = new CTemplater("templates/tpl", "templates/tpl_c", "templates/configs", "templates/cache");
@@ -17,6 +19,7 @@
 	$DB->exec("SET NAMES utf8");
   
   $RCM = new RCS($DB);
+  $AM = new Areas($DB);
   $Builders = new Builders($DB);
   
   session_start();

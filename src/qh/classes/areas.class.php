@@ -15,11 +15,7 @@
     {
       if ($area instanceof Area) {
         
-        $add_area_query = $this->dbc()->prepare("INSERT INTO `areas`
-          (`name`)
-          VALUES
-          (:name)
-        ");
+        $add_area_query = $this->dbc()->prepare("call addArea(:name)");
         
         $add_area_query->bindValue(":name", $area->getName());
         
@@ -38,6 +34,18 @@
         return $remove_area_query->execute();
       }
       else return false;
+    }
+    
+    public function getAll()
+    {
+      $db_areas = $this->get("SELECT `name` FROM `areas` ORDER BY `name`");
+      
+      $areas = array();
+      foreach ($db_areas as $db_area) {
+        $areas[] = new Area($db_area['name']);
+      }
+      
+      return $areas;
     }
     
     public function change($old_name, $new_name)
