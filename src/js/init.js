@@ -1,3 +1,7 @@
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 $(function(){
 	
 	var r = new Raphael('map', 744.094, 1052.36);
@@ -21,17 +25,15 @@ $(function(){
            #44A340
       more #1E6823
     */
+    var r_color = getRandomInt(1, 5+1);
     
-    if (paths[country].count_rc >= 0 && paths[country].count_rc < 15) {
-      color = "#EEEEEE";
-    } else if (paths[country].count_rc >= 15 && paths[country].count_rc < 30) {
-      color = "#D6E685";
-    } else if (paths[country].count_rc >= 30 && paths[country].count_rc < 45) {
-      color = "#8CC665";
-    } else if (paths[country].count_rc >= 45 && paths[country].count_rc < 60) {
-      color = "#44A340";
-    } else if (paths[country].count_rc >= 60) {
-      color = "#1E6823";
+    switch(r_color)
+    {
+      case 1: color = "#EEEEEE"; break;
+      case 2: color = "#D6E685"; break;
+      case 3: color = "#8CC665"; break;
+      case 4: color = "#44A340"; break;
+      case 5: color = "#1E6823"; break;
     }
     
 		obj.attr({fill: color});

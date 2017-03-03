@@ -253,6 +253,14 @@
                     <select name="home_address" class="form-control"></select>
                   </div>
                   <div class="form-group">
+                    <label>Подъезд</label>
+                    <input type="number" name="flt_porch" min="1" value="1" max="20" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Этаж</label>
+                    <input type="number" name="flt_floor" min="1" value="1" max="20" class="form-control">
+                  </div>
+                  <div class="form-group">
                     <label>Кол-во комнат</label>
                     <input type="number" name="flt_count_rooms" min="1" value="1" max="5" class="form-control">
                   </div>
@@ -272,10 +280,11 @@
                     </table>
                   </div>
                   <div class="form-group">
-                  
+                    <label>Стоимость</label>
+                    <input type="number" name="flt_price" class="form-control">
                   </div>
                   <div class="form-group">
-                    <input type="submit" name="addFlatToHouseButton" value="Добавить">
+                    <input type="submit" name="addFlatToHouseButton" class="btn btn-primary" value="Добавить">
                   </div>
                 </form>
               </fieldset>

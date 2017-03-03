@@ -8,6 +8,7 @@
   use QH\Structures\Area;
   use QH\Structures\Builder;
   use QH\Structures\House;
+  use QH\Structures\Flat;
   
   const THIS = "index.php";
   
@@ -78,6 +79,40 @@
         CTools::Redirect(THIS);
       }
     }
+    
+    if (!empty($_POST['addFlatToHouseButton'])) {
+      $rc_name = htmlspecialchars($_POST['rc_name']);
+      $home_address = htmlspecialchars($_POST['home_address']);
+      $flt_porch = htmlspecialchars($_POST['flt_porch']);
+      $flt_floor = htmlspecialchars($_POST['flt_floor']);
+      $flt_count_rooms = htmlspecialchars($_POST['flt_count_rooms']);
+      $flt_square = htmlspecialchars($_POST['flt_square']);
+      $flt_balcony = htmlspecialchars($_POST['flt_balcony']);
+      $flt_price = htmlspecialchars($_POST['flt_price']);
+      
+      $flat = new Flat(
+        $rc_name, 
+        $home_address, 
+        $flt_floor,
+        $flt_porch,
+        $flt_count_rooms,
+        $flt_square,
+        $flt_price
+       );
+       $flat->setBalcony($flt_balcony);
+      
+      
+        echo "<pre>";
+        print_r($flat);
+        echo "</pre>";
+        exit;
+      
+      if ($FM->add($flat)) {
+        CTools::Redirect(THIS);
+      }
+      
+    }
+    
     
     $rcs = $RCM->getAll();
     $rcsByArea = array();

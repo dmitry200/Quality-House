@@ -9,11 +9,13 @@
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/rcs.class.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/builders.class.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/houses.class.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/flats.class.php";
   
   use QH\Classes\RCS;
   use QH\Classes\Areas;
   use QH\Classes\Builders;
   use QH\Classes\Houses;
+  use QH\Classes\Flats;
   
   $CT = new CTemplater("templates/tpl", "templates/tpl_c", "templates/configs", "templates/cache");
   
@@ -24,6 +26,7 @@
   $AM = new Areas($DB);
   $Builders = new Builders($DB);
   $HM = new Houses($DB);
+  $FM = new Flats($DB);
   
   session_start();
 ?>

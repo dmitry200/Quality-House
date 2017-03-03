@@ -7,22 +7,48 @@
   class Flat
   {
     
+    private $rc_name;
+    private $home_address;
     private $porch; 
     private $floor;
+    
     private $status;
     private $count_rooms;
     private $square;
     private $balcony;
+    private $price;
     
-    public function __construct(int $porch, int $floor, int $count_rooms, int $square, int $status = FLAT_RENT)
-    {
+    public function __construct(
+      string $rc_name, 
+      string $home_address, 
+      int $porch, 
+      int $floor, 
+      int $count_rooms, 
+      int $square, 
+      int $price,
+      int $status = FLAT_RENT
+    ){
+      $this->rc_name = $rc_name;
+      $this->home_address = $home_address;
       $this->porch = abs($porch);
       $this->floor = abs($floor);
+      
       $this->count_rooms = $count_rooms;
       $this->square = abs($square);
       $this->balcony = $balcony;
       $this->repair = $repair;
       $this->status = $status;
+      $this->price = $price;
+    }
+    
+    public function getRCName() : string
+    {
+      return $this->rc_name;
+    }
+    
+    public function getHomeAddress() : string
+    {
+      return $this->home_address;
     }
     
     public function getPorch() : int
@@ -55,9 +81,9 @@
       return $this->balcony;
     }
     
-    public function setRepair(string $repair)
+    public function getPrice() : int
     {
-      $this->repair = $repair;
+      return $this->price;
     }
     
     public function setBalcony(bool $isHaveBalcony)
