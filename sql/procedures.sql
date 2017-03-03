@@ -10,6 +10,7 @@ DROP PROCEDURE IF EXISTS changeStatusFlat;
 DROP PROCEDURE IF EXISTS getRCS;
 DROP PROCEDURE IF EXISTS getHomes;
 DROP PROCEDURE IF EXISTS getFlats;
+DROP PROCEDURE IF EXISTS getCountHomes;
 
 DELIMITER //
 
@@ -79,6 +80,11 @@ CREATE PROCEDURE getFlats(rc_name char(255), home_addr char(255))
 BEGIN
 	SELECT `count_rooms`, `square`, `balcony`, `porch`, `floor`, `price_flat`, `stat` FROM `flats` f INNER JOIN `home_flat` hf ON f.id_flat=hf.id_flat 
 	WHERE `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name));
+END;
+
+CREATE PROCEDURE getCountHomes(rc_name char(255))
+BEGIN
+	SELECT COUNT(`address`) as count_homes FROM `homes` INNER JOIN `rc_home` ON homes.id_home=rc_home.id_home WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name);
 END;
 
 //

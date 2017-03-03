@@ -31,7 +31,6 @@
     public function remove($rc_name) : bool
     {
       if (is_string($rc_name) && !empty($rc_name)) {
-        
         $remove_builder_query = $this->dbc()->prepare("DELETE FROM `rcs` WHERE `name`=:name");
         $remove_builder_query->bindValue(":name", $rc_name);
         
@@ -50,6 +49,10 @@
         
         $new_rc->setTextStatus($db_rc['rc_text_status']);
         $new_rc->setArea($db_rc['rc_area_name']);
+        
+        $count_homes = $this->get("call getCountHomes(:rc_name)", [":rc_name" => $db_rc['rc_name']])[0]['count_homes'];
+        
+        $new_rc->setCountHouses((int)$count_homes);
         
         $rcs[] = $new_rc;
       }
@@ -70,6 +73,11 @@
     public function getStatuses()
     {
       return $this->get("SELECT `description` FROM `rc_status` ORDER BY `description`");
+    }
+    
+    public function getHouses(string $rc_name)
+    {
+      return $this->get("call getHomes(:rc_name)", [":rc_name" => $rc_name]);
     }
     
     public function change($old_name, $new_name)

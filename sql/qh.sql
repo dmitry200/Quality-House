@@ -92,28 +92,28 @@ INSERT INTO `flat_status` (`id_status`, `description`) VALUES (1, "Не сдан
 INSERT INTO `flat_status` (`id_status`, `description`) VALUES (2, "Сдана");
 
 /* Связка таблицы "area_rc" с таблицей "areas" */
-ALTER TABLE `area_rc` ADD CONSTRAINT area_and_rc FOREIGN KEY(`id_area`) REFERENCES `areas` (`id_area`) ON UPDATE CASCADE;
+ALTER TABLE `area_rc` ADD CONSTRAINT area_and_rc FOREIGN KEY(`id_area`) REFERENCES `areas` (`id_area`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "area_rc" с таблицей "rcs" */
-ALTER TABLE `area_rc` ADD CONSTRAINT rc_area FOREIGN KEY(`id_rc`) REFERENCES `rcs` (`id_rc`) ON UPDATE CASCADE;
+ALTER TABLE `area_rc` ADD CONSTRAINT rc_area FOREIGN KEY(`id_rc`) REFERENCES `rcs` (`id_rc`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "area_rc" с таблицей "builders" */
-ALTER TABLE `rcs` ADD CONSTRAINT rc_builder FOREIGN KEY(`id_builder`) REFERENCES `builders` (`id_builder`) ON UPDATE CASCADE;
+ALTER TABLE `rcs` ADD CONSTRAINT rc_builder FOREIGN KEY(`id_builder`) REFERENCES `builders` (`id_builder`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "rc_status" с таблицей "rcs" */
-ALTER TABLE `rcs` ADD CONSTRAINT rc_stat FOREIGN KEY(`stat`) REFERENCES `rc_status` (`id_status`) ON UPDATE CASCADE;
+ALTER TABLE `rcs` ADD CONSTRAINT rc_stat FOREIGN KEY(`stat`) REFERENCES `rc_status` (`id_status`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "rc" с таблицей "rc_home" */
-ALTER TABLE `rc_home` ADD CONSTRAINT rc_and_home FOREIGN KEY(`id_rc`) REFERENCES `rcs` (`id_rc`) ON UPDATE CASCADE;
+ALTER TABLE `rc_home` ADD CONSTRAINT rc_and_home FOREIGN KEY(`id_rc`) REFERENCES `rcs` (`id_rc`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "home" с таблицей "rc_home" */
-ALTER TABLE `rc_home` ADD CONSTRAINT home_rc FOREIGN KEY(`id_home`) REFERENCES `homes` (`id_home`) ON UPDATE CASCADE;
+ALTER TABLE `rc_home` ADD CONSTRAINT home_rc FOREIGN KEY(`id_home`) REFERENCES `homes` (`id_home`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "flat" с таблицей "home_flat" */
-ALTER TABLE `home_flat` ADD CONSTRAINT home_and_flat FOREIGN KEY(`id_flat`) REFERENCES `flats` (`id_flat`) ON UPDATE CASCADE;
+ALTER TABLE `home_flat` ADD CONSTRAINT home_and_flat FOREIGN KEY(`id_flat`) REFERENCES `flats` (`id_flat`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "home" с таблицей "home_flat" */
-ALTER TABLE `home_flat` ADD CONSTRAINT flat_home FOREIGN KEY(`id_home`) REFERENCES `homes` (`id_home`) ON UPDATE CASCADE;
+ALTER TABLE `home_flat` ADD CONSTRAINT flat_home FOREIGN KEY(`id_home`) REFERENCES `homes` (`id_home`) ON UPDATE CASCADE ON DELETE CASCADE;
 
 /* Связка таблицы "flats" с таблицей "flat_status" */
-ALTER TABLE `flats` ADD CONSTRAINT flat_stat FOREIGN KEY(`stat`) REFERENCES `flat_status` (`id_status`) ON UPDATE CASCADE;
+ALTER TABLE `flats` ADD CONSTRAINT flat_stat FOREIGN KEY(`stat`) REFERENCES `flat_status` (`id_status`) ON UPDATE CASCADE ON DELETE CASCADE;

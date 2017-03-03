@@ -10,38 +10,54 @@
 	</head>
 	<body>
     <header class="container">
-        
+      <div class="row">
+        <div class="col-md-12"><h1>Панель управления Quality House</h1></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <nav>
+            <a href="#">Руководство</a>
+            <a href="#">Видеоруководство</a>
+            <a href="#">Выйти</a>
+          </nav>
+        </div>
+      </div>
     </header>
-    
+    <hr>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-8">
           <div class="row">
             <div class="col-md-8">
-            <fieldset>
-               <legend>Жилые комплексы</legend>
-                {foreach from=$rcsByArea item=_rcs key=area}
-                  <fieldset>
-                    <legend>{$area}</legend>
-                    <table class="table table-bordered">
-                      <tr>
-                        <th>Название</th>
-                        <th>Застройщик</th>
-                        <th>Адрес</th>
-                        <th>Статус</th>
-                      </tr>
-                      {foreach from=$_rcs item=rc}
-                       <tr>
-                         <td>{$rc->getName()}</td>
-                         <td>{$rc->getBuilder()}</td>
-                         <td>{$rc->getAddress()}</td>
-                         <td>{$rc->getTextStatus()}</td>
-                       </tr>
-                      {/foreach}
-                    </table>
-                  </fieldset>
-                {/foreach}
-             </fieldset>
+							<form name="deleteRCForm" method="POST">
+								<fieldset>
+								 <legend>Жилые комплексы</legend>
+									<input type="submit" name="deleteRCButton" value="Удалить" class="btn btn-danger">
+									{foreach from=$rcsByArea item=_rcs key=area}
+										<fieldset>
+											<legend>{$area}</legend>
+											<table class="table table-bordered">
+												<tr>
+													<th>Название</th>
+													<th>Застройщик</th>
+													<th>Адрес</th>
+													<th>Статус</th>
+													<th>Выбрать</th>
+												</tr>
+												{foreach from=$_rcs item=rc}
+												 <tr>
+													 <td>{$rc->getName()}</td>
+													 <td>{$rc->getBuilder()}</td>
+													 <td>{$rc->getAddress()}</td>
+													 <td>{$rc->getTextStatus()}</td>
+													 <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="{$rc->getName()}"></td>
+												 </tr>
+												{/foreach}
+											</table>
+										</fieldset>
+									{/foreach}
+								</fieldset>
+							</form>
             </div>
             <div class="col-md-4">
               <br>
@@ -57,10 +73,12 @@
                       <table class="table table-bordered">
                         <tr>
                           <th>Название</th>
+                          <th>Выбрать</th>
                         </tr>
                         {foreach from=$builders item=builder}
                           <tr>
                             <td>{$builder->getName()}</td>
+                            <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_builder" value="{$builder->getName()}"></td>
                           </tr>
                         {/foreach}
                       </table>
@@ -78,10 +96,12 @@
                       <table class="table table-bordered">
                         <tr>
                           <th>Название</th>
+                          <th>Выбрать</th>
                         </tr>
                         {foreach from=$areas item=area}
                           <tr>
                             <td>{$area->getName()}</td>
+                            <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area" value="{$area->getName()}"></td>
                           </tr>
                         {/foreach}
                       </table>
@@ -98,7 +118,7 @@
                     <div class="panel-body">
                       <form name="changeStatusRCForm" method="POST">
                         <div class="form-group">
-                          <label>ЖК</label>
+                          <label>Жилой комплекс</label>
                           <select name="rc_name" class="form-control">
                             {foreach from=$rcs item=rc}
                               <option>{$rc->getName()}</option>
@@ -114,7 +134,7 @@
                           </select>
                         </div>
                         <div class="form-group">
-                          <input type="submit" name="changeStatusRCButton" class="btn btn-primary">
+                          <input type="submit" name="changeStatusRCButton" class="btn btn-primary" value="Изменить">
                         </div>
                       </form>
                     </div>
@@ -127,30 +147,36 @@
         <div class="col-md-4">
           <div class="row">
             <div class="col-md-12">
-              <fieldset>
-                <legend>Добавить застройщика</legend>
-                <form name="addBuilderForm" method="POST">
-                  <div class="form-group">
-                    <label>Название</label>
-                    <input type="text" name="builder" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" name="addBuilderButton" class="btn btn-primary">
-                  </div>
-                </form>
-              </fieldset>
-              <fieldset>
-                <legend>Добавить район</legend>
-                <form name="addAreaForm" method="POST">
-                  <div class="form-group">
-                    <label>Название</label>
-                    <input type="text" name="area_name" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" name="addAreaButton" class="btn btn-primary">
-                  </div>
-                </form>
-              </fieldset>
+              <div class="row">
+                <div class="col-md-6">
+                  <fieldset>
+                    <legend>Добавить застройщика</legend>
+                    <form name="addBuilderForm" method="POST">
+                      <div class="form-group">
+                        <label>Название</label>
+                        <input type="text" name="builder" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" name="addBuilderButton" class="btn btn-primary" value="Добавить">
+                      </div>
+                    </form>
+                  </fieldset>
+                </div>
+                <div class="col-md-6">
+                  <fieldset>
+                    <legend>Добавить район</legend>
+                    <form name="addAreaForm" method="POST">
+                      <div class="form-group">
+                        <label>Название</label>
+                        <input type="text" name="area_name" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" name="addAreaButton" class="btn btn-primary" value="Добавить">
+                      </div>
+                    </form>
+                  </fieldset>                
+                </div>
+              </div>
               <fieldset>
                 <legend>Добавить ЖК</legend>
                 <form name="addRCForm" method="POST">
@@ -179,7 +205,77 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <input type="submit" name="addRCButton" class="btn btn-primary">
+                    <input type="submit" name="addRCButton" class="btn btn-primary" value="Добавить">
+                  </div>
+                </form>
+              </fieldset>
+              <fieldset>
+                <legend>Добавить дом к ЖК</legend>
+                <form name="addHomeToRCForm" method="POST">
+                  <div class="form-group">
+                    <label>Жилой комплекс</label>
+                    <select name="rc_name" class="form-control">
+                      {foreach from=$rcs item=rc}
+                        <option>{$rc->getName()}</option>
+                      {/foreach}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" name="home_address" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Кол-во этажей</label>
+                    <input type="number" min="9" value="9" max="20" name="home_count_floors" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Кол-во подъездов</label>
+                    <input type="number" min="3" value="3" max="20" name="home_count_porch" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" name="addHomeToRCButton" class="btn btn-primary" value="Добавить">
+                  </div>
+                </form>
+              </fieldset>
+              <fieldset>
+                <legend>Добавить информацию об квартире</legend>
+                <form name="addFlatToHouseForm" method="POST">
+                  <div class="form-group">
+                    <label>Жилой комплекс</label>
+                    <select name="rc_name" class="form-control">
+                      {foreach from=$rcs item=rc}
+                        <option>{$rc->getName()}</option>
+                      {/foreach}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Дом</label>
+                    <select name="home_address" class="form-control"></select>
+                  </div>
+                  <div class="form-group">
+                    <label>Кол-во комнат</label>
+                    <input type="number" name="flt_count_rooms" min="1" value="1" max="5" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Площадь</label>
+                    <input type="number" name="flt_square" min="7" value="7" max="200" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Балкон</label>
+                    <table width="100%">
+                      <tr>
+                        <td>Да</td>
+                        <td><input type="radio" name="flt_balcony" value="1"></td>
+                        <td>Нет</td>
+                        <td><input type="radio" name="flt_balcony" value="0"></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="form-group">
+                  
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" name="addFlatToHouseButton" value="Добавить">
                   </div>
                 </form>
               </fieldset>
@@ -188,9 +284,29 @@
         </div>
       </div>
     </div>
-    
+    <hr>
     <footer>
       
     </footer>
+    
+    <script type="text/javascript">
+    
+      $("[name='rc_name']").change(function(){
+        var rc_name = this.value;
+        
+        $.ajax({
+          url: "php/getHouses.php",
+          type: "POST",
+          data: "rc_name=" + rc_name,
+          success: function(replay) {
+            $("[name='home_address']").html("");
+            $("[name='home_address']").html(replay);
+          }
+        });
+        
+      });
+    
+    </script>
+    
 	</body>
 </html>

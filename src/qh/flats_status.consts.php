@@ -1,6 +1,6 @@
 <?php
   
-  const FLAT_RENT = 1;   //< Ñäà¸òñÿ
-  const FLAT_PASSED = 2; //< Ñäàíà
+  const FLAT_RENT = 1;   //< Ð¡Ð´Ð°Ñ‘Ñ‚ÑÑ
+  const FLAT_PASSED = 2; //< Ð¡Ð´Ð°Ð½Ð°
   
 ?>

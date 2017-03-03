@@ -20,6 +20,8 @@
     private $address;
     private $text_status;
     
+    private $count_houses;
+    
     public function __construct(string $name, string $address, string $builder, int $status = BUILD)
     {
       $this->name = $name;
@@ -28,6 +30,7 @@
       $this->status = $status;
       
       $this->area_name = "none";
+      $this->count_houses = 0;
     }
     
     public function getName() : string
@@ -60,6 +63,11 @@
       return $this->area_name;
     }
     
+    public function getCountHouses() : int
+    {
+      return $this->count_houses;
+    }
+    
     public function setTextStatus(string $status)
     {
       $this->text_status = $status;
@@ -68,6 +76,11 @@
     public function setArea(string $area_name)
     {
       $this->area_name = $area_name;
+    }
+    
+    public function setCountHouses(int $count_house)
+    {
+      $this->count_houses = $count_house;
     }
     
   }

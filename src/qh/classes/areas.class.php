@@ -61,6 +61,10 @@
         $new_rc->setTextStatus($db_rc['rc_text_status']);
         $new_rc->setArea($db_rc['rc_area_name']);
         
+        $count_homes = $this->get("call getCountHomes(:rc_name)", [":rc_name" => $db_rc['rc_name']])[0]['count_homes'];
+        
+        $new_rc->setCountHouses((int)$count_homes);
+        
         $rcs[] = $new_rc;
       }
       

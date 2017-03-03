@@ -7,6 +7,7 @@
   use QH\Structures\RC;
   use QH\Structures\Area;
   use QH\Structures\Builder;
+  use QH\Structures\House;
   
   const THIS = "index.php";
   
@@ -51,6 +52,29 @@
       $rc_status = htmlspecialchars($_POST['rc_status']);
       
       if ($RCM->changeStatus($rc_name, $rc_status)) {
+        CTools::Redirect(THIS);
+      }
+    }
+		
+		if (!empty($_POST['deleteRCButton'])) {
+			$select_rcs = $_POST['select_rc'];
+      
+			for ($i = 0; $i < count($select_rcs); $i++) {
+        $RCM->remove($select_rcs[$i]);
+      }
+      
+      CTools::Redirect(THIS);
+		}
+    
+    if (!empty($_POST['addHomeToRCButton'])) {
+      $rc_name = htmlspecialchars($_POST['rc_name']);
+      $home_address = htmlspecialchars($_POST['home_address']);
+      $home_count_floors = htmlspecialchars($_POST['home_count_floors']);
+      $home_count_porch = htmlspecialchars($_POST['home_count_porch']);
+      
+      $house = new House($rc_name, $home_address, $home_count_floors, $home_count_porch);
+      
+      if ($HM->add($house)) {
         CTools::Redirect(THIS);
       }
     }

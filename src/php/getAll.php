@@ -11,6 +11,7 @@
       $rc_address = $rc->getAddress();
       $rc_builder = $rc->getBuilder();
       $rc_status = $rc->getTextStatus();
+      $rc_count_houses = $rc->getCountHouses();
       
       include "../blocks/rcs.tpl";
     }

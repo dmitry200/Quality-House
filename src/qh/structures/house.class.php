@@ -8,21 +8,37 @@
   {
     const  count_flats_on_floor = 4;
     
-    private $count_floors;
-    private $count_porch;
-    private $count_flats;
+    private $rc_name;
+    private $address;
     
-    private $count_free_flats;
-    private $count_busy_flats;
-    private $flats;
+    private $count_floors;     //< Кол-во этажей
+    private $count_porch;      //< Кол-во подъездов
+    private $count_flats;      //< Кол-во квартир
     
-    public function __construct(int $count_floors, int $count_porch)
+    private $count_free_flats; //< Кол-во свободных квартир
+    private $count_busy_flats; //< Кол-во сданых квартир
+    private $flats;            //< Массив с объектами типа Flat (квартира)
+    
+    public function __construct(string $rc_name, string $address, int $count_floors, int $count_porch)
     {
+      $this->rc_name = $rc_name;
+      $this->address = $address;
+      
       $this->count_floors = $count_floors;
       $this->count_porch = $count_porch;
       $this->count_flats = House::count_flats_on_floor * $this->count_floors * $this->count_porch;
       
       $this->count_free_flats = $this->count_flats;
+    }
+    
+    public function getRCName() : string
+    {
+      return $this->rc_name;
+    }
+    
+    public function getAddress() : string
+    {
+      return $this->address;
     }
     
     public function getCountFloors() : int
@@ -64,17 +80,5 @@
     }
     
   }
-  
-  $h = new House(15, 3);
-  
-  $h->addFlat([new Flat(2, 13, 2, 25, (int)FLAT_PASSED)]);
-  $h->addFlat([new Flat(1, 1, 2, 25, (int)FLAT_PASSED)]);
-  $h->addFlat([new Flat(1, 1, 2, 25, (int)FLAT_PASSED)]);
-  $h->addFlat([new Flat(1, 1, 2, 25)]);
-  
-  echo "<pre>";
-  print_r($h);
-  echo "</pre>";
-  
   
 ?>

@@ -13,7 +13,6 @@
     private $count_rooms;
     private $square;
     private $balcony;
-    private $repair;
     
     public function __construct(int $porch, int $floor, int $count_rooms, int $square, int $status = FLAT_RENT)
     {
@@ -54,11 +53,6 @@
     public function getBalcony() : bool
     {
       return $this->balcony;
-    }
-    
-    public function getRepair() : string
-    {
-      return $this->repair;
     }
     
     public function setRepair(string $repair)
