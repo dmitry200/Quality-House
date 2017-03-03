@@ -87,7 +87,7 @@
       $flt_floor = htmlspecialchars($_POST['flt_floor']);
       $flt_count_rooms = htmlspecialchars($_POST['flt_count_rooms']);
       $flt_square = htmlspecialchars($_POST['flt_square']);
-      $flt_balcony = htmlspecialchars($_POST['flt_balcony']);
+      $flt_balcony = htmlspecialchars($_POST['flt_balcony']) ?? 0;
       $flt_price = htmlspecialchars($_POST['flt_price']);
       
       $flat = new Flat(
@@ -100,12 +100,6 @@
         $flt_price
        );
        $flat->setBalcony($flt_balcony);
-      
-      
-        echo "<pre>";
-        print_r($flat);
-        echo "</pre>";
-        exit;
       
       if ($FM->add($flat)) {
         CTools::Redirect(THIS);

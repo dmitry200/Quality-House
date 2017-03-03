@@ -26,7 +26,6 @@
         $flat_add_query->bindValue(":flr", $flat->getFloor());
         $flat_add_query->bindValue(":porch", $flat->getPorch());
         
-        
         return $flat_add_query->execute();
       }
       else return false;
@@ -38,6 +37,11 @@
     }
     
     public function getAll()
+    {
+      
+    }
+    
+    public function getFlats(string $rc_name, string $home_addres)
     {
       
     }

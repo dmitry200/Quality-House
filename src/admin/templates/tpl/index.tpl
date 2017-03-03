@@ -50,7 +50,7 @@
 													 <td>{$rc->getBuilder()}</td>
 													 <td>{$rc->getAddress()}</td>
 													 <td>{$rc->getTextStatus()}</td>
-													 <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="{$rc->getName()}"></td>
+													 <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="{$rc->getName()}" required></td>
 												 </tr>
 												{/foreach}
 											</table>
@@ -78,7 +78,7 @@
                         {foreach from=$builders item=builder}
                           <tr>
                             <td>{$builder->getName()}</td>
-                            <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_builder" value="{$builder->getName()}"></td>
+                            <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_builder" value="{$builder->getName()}" required></td>
                           </tr>
                         {/foreach}
                       </table>
@@ -101,7 +101,7 @@
                         {foreach from=$areas item=area}
                           <tr>
                             <td>{$area->getName()}</td>
-                            <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area" value="{$area->getName()}"></td>
+                            <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area" value="{$area->getName()}" required></td>
                           </tr>
                         {/foreach}
                       </table>
@@ -119,7 +119,7 @@
                       <form name="changeStatusRCForm" method="POST">
                         <div class="form-group">
                           <label>Жилой комплекс</label>
-                          <select name="rc_name" class="form-control">
+                          <select name="rc_name" class="form-control" required>
                             {foreach from=$rcs item=rc}
                               <option>{$rc->getName()}</option>
                             {/foreach}
@@ -127,7 +127,7 @@
                         </div>
                         <div class="form-group">
                           <label>Статус</label>
-                          <select name="rc_status" class="form-control">
+                          <select name="rc_status" class="form-control" required>
                             {foreach from=$statutses item=status}
                               <option>{$status['description']}</option>
                             {/foreach}
@@ -154,7 +154,7 @@
                     <form name="addBuilderForm" method="POST">
                       <div class="form-group">
                         <label>Название</label>
-                        <input type="text" name="builder" class="form-control">
+                        <input type="text" name="builder" class="form-control" required>
                       </div>
                       <div class="form-group">
                         <input type="submit" name="addBuilderButton" class="btn btn-primary" value="Добавить">
@@ -168,7 +168,7 @@
                     <form name="addAreaForm" method="POST">
                       <div class="form-group">
                         <label>Название</label>
-                        <input type="text" name="area_name" class="form-control">
+                        <input type="text" name="area_name" class="form-control" required>
                       </div>
                       <div class="form-group">
                         <input type="submit" name="addAreaButton" class="btn btn-primary" value="Добавить">
@@ -182,7 +182,7 @@
                 <form name="addRCForm" method="POST">
                   <div class="form-group">
                     <label>Район</label>
-                    <select name="rc_area_name" class="form-control">                      
+                    <select name="rc_area_name" class="form-control" required>                      
                       {foreach from=$areas item=area}
                         <option>{$area->getName()}</option>
                       {/foreach}
@@ -190,15 +190,15 @@
                   </div>
                   <div class="form-group">
                     <label>Название</label>
-                    <input type="text" name="rc_name" class="form-control">
+                    <input type="text" name="rc_name" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Адрес</label>
-                    <input type="text" name="rc_address" class="form-control">
+                    <input type="text" name="rc_address" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Застройщик</label>
-                    <select name="rc_builder" class="form-control">
+                    <select name="rc_builder" class="form-control" required>
                       {foreach from=$builders item=builder}
                           <option value="{$builder->getName()}">{$builder->getName()}</option>
                       {/foreach}
@@ -214,7 +214,7 @@
                 <form name="addHomeToRCForm" method="POST">
                   <div class="form-group">
                     <label>Жилой комплекс</label>
-                    <select name="rc_name" class="form-control">
+                    <select name="rc_name" class="form-control" required>
                       {foreach from=$rcs item=rc}
                         <option>{$rc->getName()}</option>
                       {/foreach}
@@ -222,15 +222,15 @@
                   </div>
                   <div class="form-group">
                     <label>Адрес</label>
-                    <input type="text" name="home_address" class="form-control">
+                    <input type="text" name="home_address" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Кол-во этажей</label>
-                    <input type="number" min="9" value="9" max="20" name="home_count_floors" class="form-control">
+                    <input type="number" min="9" value="9" max="20" name="home_count_floors" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Кол-во подъездов</label>
-                    <input type="number" min="3" value="3" max="20" name="home_count_porch" class="form-control">
+                    <input type="number" min="3" value="3" max="20" name="home_count_porch" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <input type="submit" name="addHomeToRCButton" class="btn btn-primary" value="Добавить">
@@ -242,7 +242,7 @@
                 <form name="addFlatToHouseForm" method="POST">
                   <div class="form-group">
                     <label>Жилой комплекс</label>
-                    <select name="rc_name" class="form-control">
+                    <select name="rc_name" class="form-control" required>
                       {foreach from=$rcs item=rc}
                         <option>{$rc->getName()}</option>
                       {/foreach}
@@ -250,38 +250,38 @@
                   </div>
                   <div class="form-group">
                     <label>Дом</label>
-                    <select name="home_address" class="form-control"></select>
+                    <select name="home_address" class="form-control" required></select>
                   </div>
                   <div class="form-group">
                     <label>Подъезд</label>
-                    <input type="number" name="flt_porch" min="1" value="1" max="20" class="form-control">
+                    <input type="number" name="flt_porch" min="1" value="1" max="20" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Этаж</label>
-                    <input type="number" name="flt_floor" min="1" value="1" max="20" class="form-control">
+                    <input type="number" name="flt_floor" min="1" value="1" max="20" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Кол-во комнат</label>
-                    <input type="number" name="flt_count_rooms" min="1" value="1" max="5" class="form-control">
+                    <input type="number" name="flt_count_rooms" min="1" value="1" max="5" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Площадь</label>
-                    <input type="number" name="flt_square" min="7" value="7" max="200" class="form-control">
+                    <input type="number" name="flt_square" min="7" value="7" max="200" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Балкон</label>
                     <table width="100%">
                       <tr>
                         <td>Да</td>
-                        <td><input type="radio" name="flt_balcony" value="1"></td>
+                        <td><input type="radio" name="flt_balcony" value="1" required></td>
                         <td>Нет</td>
-                        <td><input type="radio" name="flt_balcony" value="0"></td>
+                        <td><input type="radio" name="flt_balcony" value="0" required></td>
                       </tr>
                     </table>
                   </div>
                   <div class="form-group">
                     <label>Стоимость</label>
-                    <input type="number" name="flt_price" class="form-control">
+                    <input type="number" name="flt_price" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <input type="submit" name="addFlatToHouseButton" class="btn btn-primary" value="Добавить">

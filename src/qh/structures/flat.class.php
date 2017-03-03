@@ -36,7 +36,7 @@
       $this->count_rooms = $count_rooms;
       $this->square = abs($square);
       $this->balcony = $balcony;
-      $this->repair = $repair;
+      
       $this->status = $status;
       $this->price = $price;
     }

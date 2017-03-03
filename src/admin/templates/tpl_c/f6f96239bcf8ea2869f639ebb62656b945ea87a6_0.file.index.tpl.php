@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-03-03 21:44:28
+/* Smarty version 3.1.29, created on 2017-03-03 22:24:19
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58b9b98c4a2b01_27529369',
+  'unifunc' => 'content_58b9c2e376ca05_70830431',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1488566640,
+      1 => 1488569058,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58b9b98c4a2b01_27529369 ($_smarty_tpl) {
+function content_58b9c2e376ca05_70830431 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -107,7 +107,7 @@ $__foreach_rc_1_saved_local_item = $_smarty_tpl->tpl_vars['rc'];
 													 <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getTextStatus();?>
 </td>
 													 <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="<?php echo $_smarty_tpl->tpl_vars['rc']->value->getName();?>
-"></td>
+" required></td>
 												 </tr>
 												<?php
 $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_1_saved_local_item;
@@ -163,7 +163,7 @@ $__foreach_builder_2_saved_local_item = $_smarty_tpl->tpl_vars['builder'];
                             <td><?php echo $_smarty_tpl->tpl_vars['builder']->value->getName();?>
 </td>
                             <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_builder" value="<?php echo $_smarty_tpl->tpl_vars['builder']->value->getName();?>
-"></td>
+" required></td>
                           </tr>
                         <?php
 $_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_2_saved_local_item;
@@ -205,7 +205,7 @@ $__foreach_area_3_saved_local_item = $_smarty_tpl->tpl_vars['area'];
                             <td><?php echo $_smarty_tpl->tpl_vars['area']->value->getName();?>
 </td>
                             <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area" value="<?php echo $_smarty_tpl->tpl_vars['area']->value->getName();?>
-"></td>
+" required></td>
                           </tr>
                         <?php
 $_smarty_tpl->tpl_vars['area'] = $__foreach_area_3_saved_local_item;
@@ -229,7 +229,7 @@ $_smarty_tpl->tpl_vars['area'] = $__foreach_area_3_saved_item;
                       <form name="changeStatusRCForm" method="POST">
                         <div class="form-group">
                           <label>Жилой комплекс</label>
-                          <select name="rc_name" class="form-control">
+                          <select name="rc_name" class="form-control" required>
                             <?php
 $_from = $_smarty_tpl->tpl_vars['rcs']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -255,7 +255,7 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_4_saved_item;
                         </div>
                         <div class="form-group">
                           <label>Статус</label>
-                          <select name="rc_status" class="form-control">
+                          <select name="rc_status" class="form-control" required>
                             <?php
 $_from = $_smarty_tpl->tpl_vars['statutses']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -300,7 +300,7 @@ $_smarty_tpl->tpl_vars['status'] = $__foreach_status_5_saved_item;
                     <form name="addBuilderForm" method="POST">
                       <div class="form-group">
                         <label>Название</label>
-                        <input type="text" name="builder" class="form-control">
+                        <input type="text" name="builder" class="form-control" required>
                       </div>
                       <div class="form-group">
                         <input type="submit" name="addBuilderButton" class="btn btn-primary" value="Добавить">
@@ -314,7 +314,7 @@ $_smarty_tpl->tpl_vars['status'] = $__foreach_status_5_saved_item;
                     <form name="addAreaForm" method="POST">
                       <div class="form-group">
                         <label>Название</label>
-                        <input type="text" name="area_name" class="form-control">
+                        <input type="text" name="area_name" class="form-control" required>
                       </div>
                       <div class="form-group">
                         <input type="submit" name="addAreaButton" class="btn btn-primary" value="Добавить">
@@ -328,7 +328,7 @@ $_smarty_tpl->tpl_vars['status'] = $__foreach_status_5_saved_item;
                 <form name="addRCForm" method="POST">
                   <div class="form-group">
                     <label>Район</label>
-                    <select name="rc_area_name" class="form-control">                      
+                    <select name="rc_area_name" class="form-control" required>                      
                       <?php
 $_from = $_smarty_tpl->tpl_vars['areas']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -354,15 +354,15 @@ $_smarty_tpl->tpl_vars['area'] = $__foreach_area_6_saved_item;
                   </div>
                   <div class="form-group">
                     <label>Название</label>
-                    <input type="text" name="rc_name" class="form-control">
+                    <input type="text" name="rc_name" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Адрес</label>
-                    <input type="text" name="rc_address" class="form-control">
+                    <input type="text" name="rc_address" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Застройщик</label>
-                    <select name="rc_builder" class="form-control">
+                    <select name="rc_builder" class="form-control" required>
                       <?php
 $_from = $_smarty_tpl->tpl_vars['builders']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -397,7 +397,7 @@ $_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_7_saved_item;
                 <form name="addHomeToRCForm" method="POST">
                   <div class="form-group">
                     <label>Жилой комплекс</label>
-                    <select name="rc_name" class="form-control">
+                    <select name="rc_name" class="form-control" required>
                       <?php
 $_from = $_smarty_tpl->tpl_vars['rcs']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -423,15 +423,15 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_8_saved_item;
                   </div>
                   <div class="form-group">
                     <label>Адрес</label>
-                    <input type="text" name="home_address" class="form-control">
+                    <input type="text" name="home_address" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Кол-во этажей</label>
-                    <input type="number" min="9" value="9" max="20" name="home_count_floors" class="form-control">
+                    <input type="number" min="9" value="9" max="20" name="home_count_floors" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Кол-во подъездов</label>
-                    <input type="number" min="3" value="3" max="20" name="home_count_porch" class="form-control">
+                    <input type="number" min="3" value="3" max="20" name="home_count_porch" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <input type="submit" name="addHomeToRCButton" class="btn btn-primary" value="Добавить">
@@ -443,7 +443,7 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_8_saved_item;
                 <form name="addFlatToHouseForm" method="POST">
                   <div class="form-group">
                     <label>Жилой комплекс</label>
-                    <select name="rc_name" class="form-control">
+                    <select name="rc_name" class="form-control" required>
                       <?php
 $_from = $_smarty_tpl->tpl_vars['rcs']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -469,38 +469,38 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_9_saved_item;
                   </div>
                   <div class="form-group">
                     <label>Дом</label>
-                    <select name="home_address" class="form-control"></select>
+                    <select name="home_address" class="form-control" required></select>
                   </div>
                   <div class="form-group">
                     <label>Подъезд</label>
-                    <input type="number" name="flt_porch" min="1" value="1" max="20" class="form-control">
+                    <input type="number" name="flt_porch" min="1" value="1" max="20" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Этаж</label>
-                    <input type="number" name="flt_floor" min="1" value="1" max="20" class="form-control">
+                    <input type="number" name="flt_floor" min="1" value="1" max="20" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Кол-во комнат</label>
-                    <input type="number" name="flt_count_rooms" min="1" value="1" max="5" class="form-control">
+                    <input type="number" name="flt_count_rooms" min="1" value="1" max="5" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Площадь</label>
-                    <input type="number" name="flt_square" min="7" value="7" max="200" class="form-control">
+                    <input type="number" name="flt_square" min="7" value="7" max="200" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Балкон</label>
                     <table width="100%">
                       <tr>
                         <td>Да</td>
-                        <td><input type="radio" name="flt_balcony" value="1"></td>
+                        <td><input type="radio" name="flt_balcony" value="1" required></td>
                         <td>Нет</td>
-                        <td><input type="radio" name="flt_balcony" value="0"></td>
+                        <td><input type="radio" name="flt_balcony" value="0" required></td>
                       </tr>
                     </table>
                   </div>
                   <div class="form-group">
                     <label>Стоимость</label>
-                    <input type="number" name="flt_price" class="form-control">
+                    <input type="number" name="flt_price" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <input type="submit" name="addFlatToHouseButton" class="btn btn-primary" value="Добавить">
