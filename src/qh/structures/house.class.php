@@ -29,6 +29,7 @@
       $this->count_flats = House::count_flats_on_floor * $this->count_floors * $this->count_porch;
       
       $this->count_free_flats = $this->count_flats;
+      $this->count_busy_flats = 0;
     }
     
     public function getRCName() : string
@@ -54,6 +55,16 @@
     public function getCountFlats() : int
     {
       return $this->count_flats;
+    }
+    
+    public function getCountFreeFlats() : int
+    {
+      return $this->count_free_flats;
+    }
+    
+    public function getCountBusyFlats() : int
+    {
+      return $this->count_busy_flats;
     }
     
     public function addFlat(array $flats)

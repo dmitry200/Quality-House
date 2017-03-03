@@ -8,3 +8,4 @@ as SELECT rcs.name, rcs.address, builders.name, rc_status.id_status, rc_status.d
 	INNER JOIN `area_rc` ON rcs.id_rc=area_rc.id_rc
 	INNER JOIN `areas` ON area_rc.id_area=areas.id_area
 	ORDER BY rcs.name;
+

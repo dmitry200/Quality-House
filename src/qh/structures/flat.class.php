@@ -24,7 +24,7 @@
       int $porch, 
       int $floor, 
       int $count_rooms, 
-      int $square, 
+      int $square,
       int $price,
       int $status = FLAT_RENT
     ){

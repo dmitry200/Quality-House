@@ -4,6 +4,7 @@
   
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/classes/qh.class.php";
   require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/structures/house.class.php";
+  require_once $_SERVER['DOCUMENT_ROOT']."/src/qh/structures/flat.class.php";
   
   use QH\Classes\QH;
   use QH\Structures\House;
@@ -38,7 +39,17 @@
       
     }
     
-    
+    public function getHouses(string $rc_name) : array
+    {
+      $db_houses = $this->get("call getHomes(:rc_name)", [":rc_name" => $rc_name]);
+      
+      $houses = array();
+      foreach ($db_houses as $db_house) {
+        $houses[] = new House($rc_name, $db_house['address'], (int)$db_house['count_floors'], (int)$db_house['count_proch']);
+      }
+      
+      return $houses;
+    }
     
     
     public function change($old_name, $new_name)

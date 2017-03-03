@@ -36,11 +36,6 @@
       
     }
     
-    public function getAll()
-    {
-      
-    }
-    
     public function getFlats(string $rc_name, string $home_addres)
     {
       
