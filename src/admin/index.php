@@ -89,6 +89,7 @@
       $flt_square = htmlspecialchars($_POST['flt_square']);
       $flt_balcony = htmlspecialchars($_POST['flt_balcony']) ?? 0;
       $flt_price = htmlspecialchars($_POST['flt_price']);
+      $flt_number = htmlspecialchars($_POST['flt_number']);
       
       $flat = new Flat(
         $rc_name, 
@@ -97,7 +98,8 @@
         $flt_porch,
         $flt_count_rooms,
         $flt_square,
-        $flt_price
+        $flt_price,
+        $flt_number
        );
        $flat->setBalcony($flt_balcony);
       

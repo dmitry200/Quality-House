@@ -15,10 +15,11 @@
     {
       if ($flat instanceof Flat) {
         
-        $flat_add_query = $this->dbc()->prepare("call addFlat(:rc_name, :home_addr, :count_rms, :square, :balcony, :price, :flr, :porch)");
+        $flat_add_query = $this->dbc()->prepare("call addFlat(:rc_name, :home_addr, :number_flat, :count_rms, :square, :balcony, :price, :flr, :porch)");
         
         $flat_add_query->bindValue(":rc_name", $flat->getRCName());
         $flat_add_query->bindValue(":home_addr", $flat->getHomeAddress());
+        $flat_add_query->bindValue(":number_flat", $flat->getNumberFlat());
         $flat_add_query->bindValue(":count_rms", $flat->getCountRooms());
         $flat_add_query->bindValue(":square", $flat->getSquare());
         $flat_add_query->bindValue(":balcony", $flat->getBalcony());

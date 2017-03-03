@@ -11,6 +11,7 @@ DROP PROCEDURE IF EXISTS getRCS;
 DROP PROCEDURE IF EXISTS getHomes;
 DROP PROCEDURE IF EXISTS getFlats;
 DROP PROCEDURE IF EXISTS getCountHomes;
+DROP PROCEDURE IF EXISTS ifFlatExists;
 
 DELIMITER //
 
@@ -42,9 +43,9 @@ BEGIN
 END;
 
 
-CREATE PROCEDURE addFlat(rc_name char(255), home_addr char(255), count_rms int, sqre int, ihb bool, price int, flr int, porches int)
+CREATE PROCEDURE addFlat(rc_name char(255), home_addr char(255), nf int, count_rms int, sqre int, ihb bool, price int, flr int, porches int)
 BEGIN
-	INSERT INTO `flats` (`count_rooms`, `square`, `balcony`, `stat`) VALUES (count_rms, sqre, ihb, 1);
+	INSERT INTO `flats` (`number_flat`, `count_rooms`, `square`, `balcony`, `stat`) VALUES (nf, count_rms, sqre, ihb, 1);
 	INSERT INTO `home_flat` (`id_home`, `id_flat`, price_flat, porch, floor) 
 	VALUES (
 		(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)),
@@ -60,10 +61,10 @@ BEGIN
 	UPDATE `rcs` SET `stat`=(SELECT `id_status` FROM `rc_status` WHERE `description`=stat) WHERE `name`=rc_name;
 END;
 
-CREATE PROCEDURE changeStatusFlat(rc_name char(255), home_addr char(255), id_flt int, stat char(255))
+CREATE PROCEDURE changeStatusFlat(rc_name char(255), home_addr char(255), nf int, stat char(255))
 BEGIN
 	UPDATE `flats` SET `stat`=(SELECT `id_status` FROM `flat_status` WHERE `description`=stat) WHERE 
-		`id_flat`=(select `id_flat` FROM `home_flat` WHERE `id_flat`=4 AND `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)));
+		`id_flat`=(select `id_flat` FROM `home_flat` WHERE `number_flat`=nf AND `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)));
 END;
 
 CREATE PROCEDURE getRCS(area_name char(255))
@@ -85,6 +86,11 @@ END;
 CREATE PROCEDURE getCountHomes(rc_name char(255))
 BEGIN
 	SELECT COUNT(`address`) as count_homes FROM `homes` INNER JOIN `rc_home` ON homes.id_home=rc_home.id_home WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name);
+END;
+
+CREATE PROCEDURE ifFlatExists(rc_name char(255), home_addr char(255), nf int)
+BEGIN
+	SELECT `id_flat` FROM `flats` WHERE `id_flat`=(select `id_flat` FROM `home_flat` WHERE `number_flat`=nf AND `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)));
 END;
 
 //

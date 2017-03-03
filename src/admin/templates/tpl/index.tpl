@@ -261,6 +261,10 @@
                     <input type="number" name="flt_floor" min="1" value="1" max="20" class="form-control" required>
                   </div>
                   <div class="form-group">
+                    <label>Номер квартиры</label>
+                    <input type="number" name="flt_number" min="1" class="form-control" required>
+                  </div>
+                  <div class="form-group">
                     <label>Кол-во комнат</label>
                     <input type="number" name="flt_count_rooms" min="1" value="1" max="5" class="form-control" required>
                   </div>

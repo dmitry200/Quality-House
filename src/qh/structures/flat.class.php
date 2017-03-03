@@ -12,6 +12,7 @@
     private $porch; 
     private $floor;
     
+    private $number_flat;
     private $status;
     private $count_rooms;
     private $square;
@@ -26,6 +27,7 @@
       int $count_rooms, 
       int $square,
       int $price,
+      int $number_flat,
       int $status = FLAT_RENT
     ){
       $this->rc_name = $rc_name;
@@ -39,6 +41,7 @@
       
       $this->status = $status;
       $this->price = $price;
+      $this->number_flat = $number_flat;
     }
     
     public function getRCName() : string
@@ -84,6 +87,11 @@
     public function getPrice() : int
     {
       return $this->price;
+    }
+    
+    public function getNumberFlat() : int
+    {
+      return $this->number_flat;
     }
     
     public function setBalcony(bool $isHaveBalcony)

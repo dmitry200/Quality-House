@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-03-03 22:24:19
+/* Smarty version 3.1.29, created on 2017-03-03 23:17:23
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58b9c2e376ca05_70830431',
+  'unifunc' => 'content_58b9cf5399f9b5_27385574',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1488569058,
+      1 => 1488572221,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58b9c2e376ca05_70830431 ($_smarty_tpl) {
+function content_58b9cf5399f9b5_27385574 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -478,6 +478,10 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_9_saved_item;
                   <div class="form-group">
                     <label>Этаж</label>
                     <input type="number" name="flt_floor" min="1" value="1" max="20" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Номер квартиры</label>
+                    <input type="number" name="flt_number" min="1" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Кол-во комнат</label>
