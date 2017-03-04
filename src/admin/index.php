@@ -110,6 +110,18 @@
       
     }
     
+    if (!empty($_POST['deleteFlatButton'])) {
+      $rc_name = htmlspecialchars($_POST['rc_name']);
+      $home_address = htmlspecialchars($_POST['home_address']);
+      $select_flat = $_POST['select_flat'];
+      
+      echo $rc_name."<br>";
+      echo $home_address."<br>";
+      echo "<pre>";
+      print_r($select_flat);
+      echo "</pre>";
+      
+    }
     
     $rcs = $RCM->getAll();
     $rcsByArea = array();
