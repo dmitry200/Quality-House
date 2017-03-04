@@ -11,6 +11,7 @@ DROP PROCEDURE IF EXISTS getRCS;
 DROP PROCEDURE IF EXISTS getHomes;
 DROP PROCEDURE IF EXISTS getFlats;
 DROP PROCEDURE IF EXISTS getCountHomes;
+DROP PROCEDURE IF EXISTS deleteFlatFromHome;
 DROP FUNCTION IF EXISTS isFlatExists;
 
 DELIMITER //
@@ -89,6 +90,14 @@ END;
 CREATE PROCEDURE getCountHomes(rc_name char(255))
 BEGIN
 	SELECT COUNT(`address`) as count_homes FROM `homes` INNER JOIN `rc_home` ON homes.id_home=rc_home.id_home WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name);
+END;
+
+CREATE PROCEDURE deleteFlatFromHome(rc_name char(255), home_addr char(255), nf int)
+BEGIN
+	DELETE `flats` FROM `flats`
+	INNER JOIN `home_flat` ON flats.id_flat=home_flat.id_flat
+	INNER JOIN `rc_home` ON home_flat.id_home=rc_home.id_home
+		WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name) AND home_flat.id_home=(SELECT `id_home` FROM `homes` WHERE `address`=home_addr) AND  flats.number_flat=nf;
 END;
 
 CREATE FUNCTION isFlatExists(rc_name char(255), home_addr char(255), number_flat int) RETURNS bool

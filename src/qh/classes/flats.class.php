@@ -53,7 +53,13 @@
     
     public function remove($flat) : bool
     {
+      $remove_flat_query = $this->dbc()->prepare("call deleteFlatFromHome(:rn, :ha, :nf)");
       
+      $remove_flat_query->bindValue(":rn", $flat['rc_name']);
+      $remove_flat_query->bindValue(":ha", $flat['home_addr']);
+      $remove_flat_query->bindValue(":nf", $flat['nf']);
+      
+      return $remove_flat_query->execute();
     }
     
     public function getFlats(string $rc_name, string $home_address) : array

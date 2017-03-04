@@ -357,6 +357,53 @@
     
     <script type="text/javascript">
     
+    $(document).ready(function(){
+      
+      if ($("[name='rc_name_for_flat']").val() != "") {
+        var rc_name = $("[name='rc_name_for_flat']").val();
+        
+        $.ajax({
+          url: "php/getHouses.php",
+          type: "POST",
+          data: "rc_name=" + rc_name,
+          success: function(replay) {
+            $("[name='home_address']").html("");
+            $("[name='home_address']").html(replay);
+          }
+        });
+      }
+      
+      if ($("[name='changeRC']").val() != "") {
+        var rc_name = $("[name='changeRC']").val();
+        
+        $.ajax({
+          url: "php/getHouses.php",
+          type: "POST",
+          data: "rc_name=" + rc_name,
+          success: function(replay) {
+            $("[name='changeHome']").html("");
+            $("[name='changeHome']").html(replay);
+          }
+        });
+      }
+      
+      if ($("[name='changeHome']").val() != "") {
+        
+        var rc_name = $("[name='changeRC']").val();
+        var home_address = $("[name='changeHome']").val();
+        
+        $.ajax({
+          url: "php/getFlats.php",
+          type: "POST",
+          data: "rc_name=" + rc_name + "&home_address=" + home_address,
+          success: function(replay) {
+            $("#flatsByHome").html(replay);
+          }
+        });
+        
+      }
+      
+      
       $("[name='rc_name_for_flat']").change(function(){
         var rc_name = this.value;
         
@@ -401,8 +448,10 @@
         });
         
       });
+      
+    
+    });
     
     </script>
-    
 	</body>
 </html>
