@@ -31,6 +31,7 @@
       
       $this->count_free_flats = $this->count_flats;
       $this->count_busy_flats = 0;
+      $this->count_flats_with_info = 0;
     }
     
     public function getRCName() : string
@@ -82,8 +83,8 @@
     {
       foreach ($flats as $flat) {
         if ($flat instanceof Flat) {
-          if ((abs($flat->getPorch()) < $this->count_porch) &&
-              (abs($flat->getFloor()) < $this->count_floors)
+          if ((abs($flat->getPorch()) <= $this->count_porch) &&
+              (abs($flat->getFloor()) <= $this->count_floors)
           ) {
             
             $this->flats[] = $flat;

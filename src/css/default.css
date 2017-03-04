@@ -73,3 +73,14 @@ fieldset{
   transition-duration: 0.5s;
   box-shadow: 0px 0px 3px black;
 }
+
+.flats{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.one_flat{
+  
+}

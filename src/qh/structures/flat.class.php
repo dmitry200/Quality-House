@@ -37,7 +37,7 @@
       
       $this->count_rooms = $count_rooms;
       $this->square = abs($square);
-      $this->balcony = $balcony;
+      $this->balcony = 0;
       
       $this->status = $status;
       $this->price = $price;
@@ -79,7 +79,7 @@
       return $this->square;
     }
     
-    public function getBalcony() : bool
+    public function getBalcony() : int
     {
       return $this->balcony;
     }
@@ -94,7 +94,7 @@
       return $this->number_flat;
     }
     
-    public function setBalcony(bool $isHaveBalcony)
+    public function setBalcony(int $isHaveBalcony)
     {
       $this->balcony = $isHaveBalcony;
     }

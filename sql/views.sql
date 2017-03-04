@@ -9,5 +9,3 @@ as SELECT rcs.name, rcs.address, builders.name, rc_status.id_status, rc_status.d
 	INNER JOIN `areas` ON area_rc.id_area=areas.id_area
 	ORDER BY rcs.name;
 
-CREATE VIEW homes_flats(id_flat, id_home, number_flat)
-as SELECT * FROM `flats` INNER JOIN `home_flat` ON flats.id_flat=home_flat.id_flat

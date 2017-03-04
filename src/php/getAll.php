@@ -17,15 +17,7 @@
       $rc_houses_flats = array();
       for ($i = 0; $i < count($rc_houses); $i++) {
         $rc_houses_flats = $FM->getFlats($rc->getName(), $rc_houses[$i]->getAddress());
-        
-        for ($j = 0; $j < count($rc_houses_flats); $j++) {
-          $rc_houses[$i]->addFlat([$rc_houses_flats[$j]]);
-        }
-        
-        echo "<pre>";
-        print_r($rc_houses[$i]);
-        echo "</pre>";
-        
+        $rc_houses[$i]->addFlat($rc_houses_flats);
       }
       
       

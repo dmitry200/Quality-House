@@ -20,6 +20,7 @@
     <table border="1" style="text-align: center;" width="100%">
       <tr>
         <th>Адрес</th>
+        <th>Этажей</th>
         <th>Подъездов</th>
         <th>Квартир</th>
         <th>Квартир с инф.</th>
@@ -32,6 +33,7 @@
           foreach ($rc_houses as $rc_house) {
             echo "<tr>";
             echo "<td>".$rc_house->getAddress()."</td>";
+            echo "<td>".$rc_house->getCountFloors()."</td>";
             echo "<td>".$rc_house->getCountPorch()."</td>";
             echo "<td>".$rc_house->getCountFlats()."</td>";
             echo "<td>".$rc_house->getCountFlatsWithInfo()."</td>";
@@ -44,29 +46,31 @@
       ?>
     </table>
     <hr>
-    <form name="changeFlatStatus" method="POST">
-      <table border="1" style="text-align: center;" width="100%">
-        <tr>
-          <td>Адрес дома</td>
-          <td>Квартиры</td>
-          <td>Аренда</td>
-        </tr>
+    <form name="changeFlatStatusForm" method="POST">
         <?php
           
-          foreach ($rc_houses_flats as $rc_houses_flat) {
-            echo "<tr>";
-            foreach ($rc_houses_flat as $flat) {
-              
+          foreach ($rc_houses as $rc_house) {
+            echo "<h1>".$rc_house->getAddress()."</h1>";
+          
+            echo "<div class='flats'>";
+            foreach ($rc_house->getFlats() as $one_flat) {
+              echo "<div class='one_flat'>";
+              echo "<h4>".$one_flat->getNumberFlat()."</h4>";
+              echo "<p>Подъезд: ".$one_flat->getPorch()."</p>";
+              echo "<p>Этаж: ".$one_flat->getFloor()."</p>";
+              echo "<p>Комнат: ".$one_flat->getCountRooms()."</p>";
+              echo "<p>Общая площадь: ".$one_flat->getSquare()." кв. м.</p>";
+              echo "<p>Балкон: ".($one_flat->getBalcony() == 1 ? "Есть" : "Нету")."</p>";
+              echo "<p>Цена аренды (в месяц): ".$one_flat->getPrice()." руб.</p>";
+              echo "<p>Статус: ".($one_flat->getStatus() == 1 ? "Не сдано" : "Сдано")."</p>";
+              echo "<input type='submit' name='changeFlatStatusButton' value='Арендовать'>";
+              echo "</div>";
             }
-            
-            echo "</tr>";
+            echo "</div>";
           }
           
+          
         ?>
-      </table>
-      <select name="flat_">
-        
-      </select>
     </form>
   </div>
 </fieldset>

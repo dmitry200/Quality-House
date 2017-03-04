@@ -24,19 +24,27 @@
         )[0]['flt'];
         
         if ($isFlatExists == 0) {
-          $flat_add_query = $this->dbc()->prepare("call addFlat(:rc_name, :home_addr, :number_flat, :count_rms, :square, :balcony, :price, :flr, :porch)");
+          $home = $this->get("
+            SELECT `count_floors`, `count_proch` FROM `homes` INNER JOIN `rc_home` ON homes.id_home=rc_home.id_home
+              WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=:rc_name) AND homes.address=:home_address;
+          ", [":rc_name" => $flat->getRCName(), ":home_address" => $flat->getHomeAddress()])[0];
           
-          $flat_add_query->bindValue(":rc_name", $flat->getRCName());
-          $flat_add_query->bindValue(":home_addr", $flat->getHomeAddress());
-          $flat_add_query->bindValue(":number_flat", $flat->getNumberFlat());
-          $flat_add_query->bindValue(":count_rms", $flat->getCountRooms());
-          $flat_add_query->bindValue(":square", $flat->getSquare());
-          $flat_add_query->bindValue(":balcony", $flat->getBalcony());
-          $flat_add_query->bindValue(":price", $flat->getPrice());
-          $flat_add_query->bindValue(":flr", $flat->getFloor());
-          $flat_add_query->bindValue(":porch", $flat->getPorch());
-          
-          return $flat_add_query->execute();          
+          if (($flat->getFloor() <= $home['count_floors']) && ($flat->getPorch() <= $home['count_proch'])) {
+            $flat_add_query = $this->dbc()->prepare("call addFlat(:rc_name, :home_addr, :number_flat, :count_rms, :square, :balcony, :price, :flr, :porch)");
+            
+            $flat_add_query->bindValue(":rc_name", $flat->getRCName());
+            $flat_add_query->bindValue(":home_addr", $flat->getHomeAddress());
+            $flat_add_query->bindValue(":number_flat", $flat->getNumberFlat());
+            $flat_add_query->bindValue(":count_rms", $flat->getCountRooms());
+            $flat_add_query->bindValue(":square", $flat->getSquare());
+            $flat_add_query->bindValue(":balcony", $flat->getBalcony());
+            $flat_add_query->bindValue(":price", $flat->getPrice());
+            $flat_add_query->bindValue(":flr", $flat->getFloor());
+            $flat_add_query->bindValue(":porch", $flat->getPorch());
+            
+            return $flat_add_query->execute();
+          }
+          else return false;          
         }
         else return false;
       }
@@ -54,7 +62,7 @@
       
       $flats = array();
       foreach ($db_falts as $db_flat) {
-        $flats[] = new Flat(
+        $new_flat = new Flat(
           $rc_name,
           $home_address,
           (int)$db_flat['porch'],
@@ -65,6 +73,9 @@
           (int)$db_flat['number_flat'],
           (int)$db_flat['stat']
         );
+        $new_flat->setBalcony((int)$db_flat['balcony']);
+        
+        $flats[] = $new_flat;
       }
       
       return $flats;
