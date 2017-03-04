@@ -79,6 +79,16 @@
       return $this->flats;
     }
     
+    public function setCountFreeFlats(int $count_free_flats)
+    {
+      $this->count_free_flats = $count_free_flats;
+    }
+    
+    public function setCountBusyFlats(int $count_busy_flats)
+    {
+      $this->count_busy_flats = $count_busy_flats;
+    }
+    
     public function addFlat(array $flats)
     {
       foreach ($flats as $flat) {

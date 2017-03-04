@@ -10,7 +10,8 @@
       $rc_name = $rc->getName();
       $rc_address = $rc->getAddress();
       $rc_builder = $rc->getBuilder();
-      $rc_status = $rc->getTextStatus();
+      $rc_text_status = $rc->getTextStatus();
+      $rc_status = $rc->getStatus();
       $rc_count_houses = $rc->getCountHouses();
       $rc_houses = $HM->getHouses($rc->getName());
       
@@ -18,6 +19,10 @@
       for ($i = 0; $i < count($rc_houses); $i++) {
         $rc_houses_flats = $FM->getFlats($rc->getName(), $rc_houses[$i]->getAddress());
         $rc_houses[$i]->addFlat($rc_houses_flats);
+        
+        if ($rc_status == PASSED) {
+          $rc_houses[$i]->setCountBusyFlats($rc_houses[$i]->getCountFreeFlats());
+        }
       }
       
       

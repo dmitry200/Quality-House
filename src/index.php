@@ -2,6 +2,18 @@
   
   require_once "start.php";
   
+  if (!empty($_POST['changeFlatStatusButton'])) {
+    $rc_name = htmlspecialchars($_POST['rc_name']);
+    $home_address = htmlspecialchars($_POST['home_address']);
+    $nf = htmlspecialchars($_POST['nf']);
+    $status = htmlspecialchars($_POST['status']);
+    
+    if ($FM->changeFlatStatus($rc_name, $home_address, $nf, $status)) {
+      CTools::Redirect("index.php");
+    }
+    
+  }
+  
 ?>
 <!DOCTYPE html>
 <html>

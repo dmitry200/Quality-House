@@ -81,6 +81,18 @@
       return $flats;
     }
     
+    public function changeFlatStatus(string $rc_name, string $home_address, int $number_flat, string $status)
+    {
+      $change_status_query = $this->dbc()->prepare("call changeStatusFlat(:rc_name, :home_addr, :nf, :status)");
+      
+      $change_status_query->bindValue(":rc_name", $rc_name);
+      $change_status_query->bindValue(":home_addr", $home_address);
+      $change_status_query->bindValue(":nf", $number_flat);
+      $change_status_query->bindValue(":status", $status);
+      
+      return $change_status_query->execute();
+    }
+    
     public function change($old_name, $new_name)
     {
       return false;
