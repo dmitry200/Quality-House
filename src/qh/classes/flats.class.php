@@ -81,7 +81,7 @@
       return $flats;
     }
     
-    public function changeFlatStatus(string $rc_name, string $home_address, int $number_flat, string $status)
+    public function changeFlatStatus(string $rc_name, string $home_address, int $number_flat, int $status)
     {
       $change_status_query = $this->dbc()->prepare("call changeStatusFlat(:rc_name, :home_addr, :nf, :status)");
       

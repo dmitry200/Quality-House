@@ -61,10 +61,13 @@ BEGIN
 	UPDATE `rcs` SET `stat`=(SELECT `id_status` FROM `rc_status` WHERE `description`=stat) WHERE `name`=rc_name;
 END;
 
-CREATE PROCEDURE changeStatusFlat(rc_name char(255), home_addr char(255), nf int, stat char(255))
+CREATE PROCEDURE changeStatusFlat(rc_name char(255), home_addr char(255), nf int, stat_flat int)
 BEGIN
-	UPDATE `flats` SET `stat`=(SELECT `id_status` FROM `flat_status` WHERE `description`=stat) WHERE 
-		`id_flat`=(select `id_flat` FROM `home_flat` WHERE `number_flat`=nf AND `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)));
+	UPDATE `flats` 
+		INNER JOIN `home_flat` ON flats.id_flat=home_flat.id_flat
+		INNER JOIN `rc_home` ON home_flat.id_home=rc_home.id_home
+	SET `stat`=stat_flat
+		WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name) AND home_flat.id_home=(SELECT `id_home` FROM `homes` WHERE `address`=home_addr) AND  flats.number_flat=nf;
 END;
 
 CREATE PROCEDURE getRCS(area_name char(255))

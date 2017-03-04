@@ -68,7 +68,7 @@
             echo "<input type='hidden' name='rc_name' value='".$one_flat->getRCName()."'>";
             echo "<input type='hidden' name='home_address' value='".$one_flat->getHomeAddress()."'>";
             echo "<input type='hidden' name='nf' value='".$one_flat->getNumberFlat()."'>";
-            echo "<input type='hidden' name='status' value='".($one_flat->getStatus() == 1 ? "Не сдано" : "Сдано")."'>";
+            echo "<input type='hidden' name='status' value='2'>";
             echo "<input type='submit' name='changeFlatStatusButton' value='Арендовать'>";        
             echo "</form>";
           }
