@@ -242,7 +242,7 @@
                 <form name="addFlatToHouseForm" method="POST">
                   <div class="form-group">
                     <label>Жилой комплекс</label>
-                    <select name="rc_name" class="form-control" required>
+                    <select name="rc_name_for_flat" class="form-control" required>
                       {foreach from=$rcs item=rc}
                         <option>{$rc->getName()}</option>
                       {/foreach}
@@ -304,7 +304,7 @@
     
     <script type="text/javascript">
     
-      $("[name='rc_name']").change(function(){
+      $("[name='rc_name_for_flat']").change(function(){
         var rc_name = this.value;
         
         $.ajax({

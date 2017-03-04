@@ -11,7 +11,7 @@ DROP PROCEDURE IF EXISTS getRCS;
 DROP PROCEDURE IF EXISTS getHomes;
 DROP PROCEDURE IF EXISTS getFlats;
 DROP PROCEDURE IF EXISTS getCountHomes;
-DROP PROCEDURE IF EXISTS ifFlatExists;
+DROP FUNCTION IF EXISTS isFlatExists;
 
 DELIMITER //
 
@@ -49,7 +49,7 @@ BEGIN
 	INSERT INTO `home_flat` (`id_home`, `id_flat`, price_flat, porch, floor) 
 	VALUES (
 		(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)),
-		(SELECT `id_flat` FROM `flats` ORDER BY `id_flat` DESC LIMIT 1), 
+		(SELECT DISTINCT LAST_INSERT_ID() FROM `flats`), 
 		price, 
 		porches, 
 		flr
@@ -79,7 +79,7 @@ END;
 
 CREATE PROCEDURE getFlats(rc_name char(255), home_addr char(255))
 BEGIN
-	SELECT `count_rooms`, `square`, `balcony`, `porch`, `floor`, `price_flat`, `stat` FROM `flats` f INNER JOIN `home_flat` hf ON f.id_flat=hf.id_flat 
+	SELECT `count_rooms`, `number_flat`, `square`, `balcony`, `porch`, `floor`, `price_flat`, `stat` FROM `flats` f INNER JOIN `home_flat` hf ON f.id_flat=hf.id_flat 
 	WHERE `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name));
 END;
 
@@ -88,9 +88,23 @@ BEGIN
 	SELECT COUNT(`address`) as count_homes FROM `homes` INNER JOIN `rc_home` ON homes.id_home=rc_home.id_home WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name);
 END;
 
-CREATE PROCEDURE ifFlatExists(rc_name char(255), home_addr char(255), nf int)
+CREATE FUNCTION isFlatExists(rc_name char(255), home_addr char(255), number_flat int) RETURNS bool
 BEGIN
-	SELECT `id_flat` FROM `flats` WHERE `id_flat`=(select `id_flat` FROM `home_flat` WHERE `number_flat`=nf AND `id_home`=(select `id_home` from `rc_home` where `id_home`=(select `id_home` from `homes` where `address`=home_addr) and `id_rc`=(select `id_rc` from `rcs` where `name`=rc_name)));
+	declare result integer;
+	
+	select count(flats.`number_flat`) as cf into result from `flats`
+	INNER JOIN `home_flat` ON home_flat.id_flat=flats.id_flat
+	INNER JOIN `rc_home` ON rc_home.id_home=home_flat.id_home
+	WHERE flats.`number_flat`=number_flat AND home_flat.`id_home`=(SELECT `id_home` FROM `homes` WHERE `address`=home_addr) 
+	AND rc_home.`id_rc`=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name);
+	
+	IF
+		result >= 1
+	THEN
+		RETURN TRUE;
+	ELSE
+		RETURN FALSE;
+	END IF;
 END;
 
 //

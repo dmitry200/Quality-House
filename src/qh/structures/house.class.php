@@ -17,6 +17,7 @@
     
     private $count_free_flats; //< Кол-во свободных квартир
     private $count_busy_flats; //< Кол-во сданых квартир
+    private $count_flats_with_info; //< Кол-во квартир с указанной информацией
     private $flats;            //< Массив с объектами типа Flat (квартира)
     
     public function __construct(string $rc_name, string $address, int $count_floors, int $count_porch)
@@ -67,6 +68,16 @@
       return $this->count_busy_flats;
     }
     
+    public function getCountFlatsWithInfo() : int
+    {
+      return $this->count_flats_with_info;
+    }
+    
+    public function getFlats() : array
+    {
+      return $this->flats;
+    }
+    
     public function addFlat(array $flats)
     {
       foreach ($flats as $flat) {
@@ -88,6 +99,7 @@
           }   
         }
       }
+      $this->count_flats_with_info = count($this->flats);
     }
     
   }

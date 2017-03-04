@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-03-03 23:17:23
+/* Smarty version 3.1.29, created on 2017-03-04 10:01:00
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58b9cf5399f9b5_27385574',
+  'unifunc' => 'content_58ba662c542423_14119948',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1488572221,
+      1 => 1488610857,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58b9cf5399f9b5_27385574 ($_smarty_tpl) {
+function content_58ba662c542423_14119948 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -443,7 +443,7 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_8_saved_item;
                 <form name="addFlatToHouseForm" method="POST">
                   <div class="form-group">
                     <label>Жилой комплекс</label>
-                    <select name="rc_name" class="form-control" required>
+                    <select name="rc_name_for_flat" class="form-control" required>
                       <?php
 $_from = $_smarty_tpl->tpl_vars['rcs']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -524,7 +524,7 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_9_saved_item;
     <?php echo '<script'; ?>
  type="text/javascript">
     
-      $("[name='rc_name']").change(function(){
+      $("[name='rc_name_for_flat']").change(function(){
         var rc_name = this.value;
         
         $.ajax({

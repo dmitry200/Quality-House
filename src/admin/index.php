@@ -81,7 +81,7 @@
     }
     
     if (!empty($_POST['addFlatToHouseButton'])) {
-      $rc_name = htmlspecialchars($_POST['rc_name']);
+      $rc_name = htmlspecialchars($_POST['rc_name_for_flat']);
       $home_address = htmlspecialchars($_POST['home_address']);
       $flt_porch = htmlspecialchars($_POST['flt_porch']);
       $flt_floor = htmlspecialchars($_POST['flt_floor']);

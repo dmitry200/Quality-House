@@ -63,8 +63,8 @@ CREATE TABLE `homes` (
 
 CREATE TABLE `flats` (
   id_flat INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  number_flat int(11) NOT NULL,
   count_rooms INT(11) NOT NULL,
+  number_flat int(11) NOT NULL,
   square INT(11) NOT NULL,
   balcony BOOLEAN NOT NULL,
   stat INT(11) NOT NULL,
