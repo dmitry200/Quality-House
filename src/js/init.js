@@ -25,7 +25,14 @@ $(function(){
            #44A340
       more #1E6823
     */
-    var r_color = getRandomInt(1, 5+1);
+    var r_color = getRandomInt(1, 6);
+    /*
+    switch(r_color)
+    {
+      case 0: color = "blue"; break;
+      case 1: color = "yellow"; break;
+    }
+    */
     
     switch(r_color)
     {
