@@ -12,34 +12,41 @@
         height: 100vh;
       }
       
+      a { 
+        text-align: center;
+        padding: 15px;
+        font-size: 25px;
+      }
+      
     </style>
   </head>
   <body>
+    <a href="index.php">Назад</a>
     <input type="hidden" id="place" value="<?= $_GET['place']; ?>">
-    
     <div id="map"></div>
     
-    
-     <script type="text/javascript">
+    <script type="text/javascript">
      
       var msc_map;
       var place = $("#place").val();
       
       ymaps.ready(function(){
         
-        msc_map = new ymaps.Map("map", {center: [55.76, 37.64], zoom: 10, behaviors: ['default', 'scrollZoom']});
-        msc_map.controls.add("zoomControl");
-        msc_map.controls.add("mapTools");
+        var geoPlace = ymaps.geocode(place);
+        geoPlace.then(
+          function (res){
+            msc_map = new ymaps.Map("map", {center: res.geoObjects.get(0).geometry.getCoordinates(), zoom: 15, behaviors: ['default', 'scrollZoom']});
+            msc_map.controls.add("zoomControl");
+            msc_map.controls.add("mapTools");
+            msc_map.geoObjects.add(res.geoObjects.get(0));
+          },
+          function (err) {
+            alert('Error');
+          }
+        );
+
         
-         var geoPlace = ymaps.geocode(place);
-          geoPlace.then(
-            function (res){
-              msc_map.geoObjects.add(res.geoObjects.get(0));
-            },
-            function (err) {
-              alert('Error');
-            }
-          );
+        
         
       });
       

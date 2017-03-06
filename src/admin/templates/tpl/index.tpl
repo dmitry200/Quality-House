@@ -25,18 +25,6 @@
     </header>
     <hr>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="container-fluid">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#rcs" data-toggle="tab">Жилые комплексы</a></li>
@@ -72,7 +60,7 @@
                                <td>{$rc->getBuilder()}</td>
                                <td>{$rc->getAddress()}</td>
                                <td>{$rc->getTextStatus()}</td>
-                               <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="{$rc->getName()}" required></td>
+                               <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="{$rc->getName()}"></td>
                              </tr>
                             {/foreach}
                           </table>

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-03-04 15:57:29
+/* Smarty version 3.1.29, created on 2017-03-07 01:28:02
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58bab9b9e2ddd9_75249405',
+  'unifunc' => 'content_58bde272586738_57763678',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1488632247,
+      1 => 1488839281,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58bab9b9e2ddd9_75249405 ($_smarty_tpl) {
+function content_58bde272586738_57763678 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,16 +51,6 @@ function content_58bab9b9e2ddd9_75249405 ($_smarty_tpl) {
       </div>
     </header>
     <hr>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -129,7 +119,7 @@ $__foreach_rc_1_saved_local_item = $_smarty_tpl->tpl_vars['rc'];
                                <td><?php echo $_smarty_tpl->tpl_vars['rc']->value->getTextStatus();?>
 </td>
                                <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="<?php echo $_smarty_tpl->tpl_vars['rc']->value->getName();?>
-" required></td>
+"></td>
                              </tr>
                             <?php
 $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_1_saved_local_item;
