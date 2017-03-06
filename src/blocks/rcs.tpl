@@ -9,7 +9,7 @@
         <th>Статус</th>
       </tr>
       <tr>
-        <td><?= $rc_address; ?></td>
+        <td><a href="geo.php?place=<?= $rc_address; ?>"><?= $rc_address; ?></a></td>
         <td><?= $rc_builder; ?></td>
         <td><?= $rc_count_houses; ?></td>
         <td><?= $rc_text_status; ?></td>
