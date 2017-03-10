@@ -135,6 +135,29 @@
       CTools::Redirect(THIS);
     }
     
+    if (!empty($_POST['addNewInfButton'])) {
+      $area_name = $_POST['area_name'];
+      $inf_address = htmlspecialchars($_POST['inf_address']);
+      $INF->add([":area_name" => $area_name, ":addr" => $inf_address]);
+      
+      CTools::Redirect(THIS);
+    }
+    
+    if (!empty($_POST['deleteInfButton'])) {
+      $select_inf = $_POST['select_inf'];
+      
+      for ($i = 0; $i < count($select_inf); $i++) {
+        $INF->remove($select_inf[$i]);
+      }
+      
+      CTools::var_dump($infsByArea);
+    }
+    
+    $infs = $INF->getAll();
+    $infsByArea = array();
+    for ($i = 0; $i < count($infs); $i++) {
+      $infsByArea[$infs[$i]['name']][] = $infs[$i];
+    }
     
     $rcs = $RCM->getAll();
     $rcsByArea = array();
@@ -145,6 +168,7 @@
     $CT->assign("areas", $AM->getAll());
     $CT->assign("builders", $Builders->getAll());
     $CT->assign("rcsByArea", $rcsByArea);
+    $CT->assign("infsByArea", $infsByArea);
     $CT->assign("rcs", $RCM->getAll());
     $CT->assign("statutses", $RCM->getStatuses());
     

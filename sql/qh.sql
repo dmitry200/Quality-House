@@ -36,8 +36,8 @@ CREATE TABLE `rc_status` (
   INDEX(id_status)
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
-INSERT INTO `rc_status` (`id_status`, `description`) VALUES (1, "Строится");
-INSERT INTO `rc_status` (`id_status`, `description`) VALUES (2, "Сдано");
+INSERT INTO `rc_status` (`description`) VALUES ("Строится");
+INSERT INTO `rc_status` (`description`) VALUES ("Сдано");
 
 CREATE TABLE `builders` (
   id_builder INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -82,15 +82,22 @@ CREATE TABLE `home_flat` (
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
 CREATE TABLE `flat_status` (
-  id_status INT(11) NOT NULL PRIMARY KEY,
+  id_status INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   description CHAR(255) NOT NULL UNIQUE,
   INDEX(id_status),
   CONSTRAINT fsc_descp CHECK(description <> '')
 ) ENGINE = InnoDB CHARACTER SET = UTF8;
 
-
 INSERT INTO `flat_status` (`id_status`, `description`) VALUES (1, "Не сдана");
 INSERT INTO `flat_status` (`id_status`, `description`) VALUES (2, "Сдана");
+
+
+CREATE TABLE `inf` (
+	id_inf INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id_area INT(11) NOT NULL,
+	address CHAR(255) NOT NULL UNIQUE,
+	INDEX(id_area)
+) ENGINE = InnoDB CHARACTER SET = UTF8;
 
 /* Связка таблицы "area_rc" с таблицей "areas" */
 ALTER TABLE `area_rc` ADD CONSTRAINT area_and_rc FOREIGN KEY(`id_area`) REFERENCES `areas` (`id_area`) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -118,3 +125,5 @@ ALTER TABLE `home_flat` ADD CONSTRAINT flat_home FOREIGN KEY(`id_home`) REFERENC
 
 /* Связка таблицы "flats" с таблицей "flat_status" */
 ALTER TABLE `flats` ADD CONSTRAINT flat_stat FOREIGN KEY(`stat`) REFERENCES `flat_status` (`id_status`) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE `inf` ADD CONSTRAINT area_inf FOREIGN KEY (`id_area`) REFERENCES `areas` (`id_area`) ON UPDATE CASCADE ON DELETE CASCADE;

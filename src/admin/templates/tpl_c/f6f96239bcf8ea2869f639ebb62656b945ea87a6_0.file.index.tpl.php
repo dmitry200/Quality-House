@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-03-10 12:42:56
+/* Smarty version 3.1.29, created on 2017-03-10 16:05:59
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58c27520396a97_37372839',
+  'unifunc' => 'content_58c2a4b7a06852_22327624',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1489138788,
+      1 => 1489151092,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58c27520396a97_37372839 ($_smarty_tpl) {
+function content_58c2a4b7a06852_22327624 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -338,7 +338,7 @@ $_smarty_tpl->tpl_vars['status'] = $__foreach_status_5_saved_item;
                     <form name="addRCForm" method="POST">
                       <div class="form-group">
                         <label>Район</label>
-                        <select name="rc_area_name" class="form-control" required>                      
+                        <select name="rc_area_name" class="form-control" required>
                           <?php
 $_from = $_smarty_tpl->tpl_vars['areas']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -575,8 +575,109 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_10_saved_item;
         </div>
         <div class="tab-pane" id="inf_structure">
           <div class="row">
-            <div class="col-md-12">
-              
+            <div class="col-md-8">
+              <br>
+              <form name="deleteInfForm" method="POST">
+              <input type="submit" name="deleteInfButton" value="Удалить" class="btn btn-danger">
+              <?php
+$_from = $_smarty_tpl->tpl_vars['infsByArea']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_infs_11_saved_item = isset($_smarty_tpl->tpl_vars['infs']) ? $_smarty_tpl->tpl_vars['infs'] : false;
+$__foreach_infs_11_saved_key = isset($_smarty_tpl->tpl_vars['area']) ? $_smarty_tpl->tpl_vars['area'] : false;
+$_smarty_tpl->tpl_vars['infs'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['area'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['infs']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['area']->value => $_smarty_tpl->tpl_vars['infs']->value) {
+$_smarty_tpl->tpl_vars['infs']->_loop = true;
+$__foreach_infs_11_saved_local_item = $_smarty_tpl->tpl_vars['infs'];
+?>
+                <fieldset>
+                  <legend><?php echo $_smarty_tpl->tpl_vars['area']->value;?>
+</legend>
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>Адрес</th>
+                      <th>Выбрать</th>
+                    </tr>
+                    <?php
+$_from = $_smarty_tpl->tpl_vars['infs']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_inf_12_saved_item = isset($_smarty_tpl->tpl_vars['inf']) ? $_smarty_tpl->tpl_vars['inf'] : false;
+$_smarty_tpl->tpl_vars['inf'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['inf']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['inf']->value) {
+$_smarty_tpl->tpl_vars['inf']->_loop = true;
+$__foreach_inf_12_saved_local_item = $_smarty_tpl->tpl_vars['inf'];
+?>
+                     <tr>
+                       <td><?php echo $_smarty_tpl->tpl_vars['inf']->value['address'];?>
+</td>
+                       <td><input type="checkbox" name="select_inf[]" value="<?php echo $_smarty_tpl->tpl_vars['inf']->value['id_inf'];?>
+"></td>
+                     </tr>
+                    <?php
+$_smarty_tpl->tpl_vars['inf'] = $__foreach_inf_12_saved_local_item;
+}
+if ($__foreach_inf_12_saved_item) {
+$_smarty_tpl->tpl_vars['inf'] = $__foreach_inf_12_saved_item;
+}
+?>
+                  </table>
+                </fieldset>
+              <?php
+$_smarty_tpl->tpl_vars['infs'] = $__foreach_infs_11_saved_local_item;
+}
+if ($__foreach_infs_11_saved_item) {
+$_smarty_tpl->tpl_vars['infs'] = $__foreach_infs_11_saved_item;
+}
+if ($__foreach_infs_11_saved_key) {
+$_smarty_tpl->tpl_vars['area'] = $__foreach_infs_11_saved_key;
+}
+?>
+            </div>
+            <div class="col-md-4">
+              <fieldset>
+                <legend>Добавить новую структуру</legend>
+                <form name="addNewInfForm" method="POST">
+                  <div class="form-group">
+                    <label>Район</label>
+                    <select name="area_name" class="form-control">
+                      <?php
+$_from = $_smarty_tpl->tpl_vars['areas']->value;
+if (!is_array($_from) && !is_object($_from)) {
+settype($_from, 'array');
+}
+$__foreach_area_13_saved_item = isset($_smarty_tpl->tpl_vars['area']) ? $_smarty_tpl->tpl_vars['area'] : false;
+$_smarty_tpl->tpl_vars['area'] = new Smarty_Variable();
+$_smarty_tpl->tpl_vars['area']->_loop = false;
+foreach ($_from as $_smarty_tpl->tpl_vars['area']->value) {
+$_smarty_tpl->tpl_vars['area']->_loop = true;
+$__foreach_area_13_saved_local_item = $_smarty_tpl->tpl_vars['area'];
+?>
+                        <option><?php echo $_smarty_tpl->tpl_vars['area']->value->getName();?>
+</option>
+                      <?php
+$_smarty_tpl->tpl_vars['area'] = $__foreach_area_13_saved_local_item;
+}
+if ($__foreach_area_13_saved_item) {
+$_smarty_tpl->tpl_vars['area'] = $__foreach_area_13_saved_item;
+}
+?>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" name="inf_address" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" name="addNewInfButton" class="btn btn-primary">
+                  </div>
+                </form>
+              </fieldset>
             </div>
           </div>
         </div>
@@ -632,7 +733,6 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_10_saved_item;
         
       }
       
-      
       $("[name='rc_name_for_flat']").change(function(){
         var rc_name = this.value;
         
@@ -677,7 +777,6 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_10_saved_item;
         });
         
       });
-      
     
     });
     

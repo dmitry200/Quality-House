@@ -192,7 +192,7 @@
                     <form name="addRCForm" method="POST">
                       <div class="form-group">
                         <label>Район</label>
-                        <select name="rc_area_name" class="form-control" required>                      
+                        <select name="rc_area_name" class="form-control" required>
                           {foreach from=$areas item=area}
                             <option>{$area->getName()}</option>
                           {/foreach}
@@ -338,8 +338,49 @@
         </div>
         <div class="tab-pane" id="inf_structure">
           <div class="row">
-            <div class="col-md-12">
-              
+            <div class="col-md-8">
+              <br>
+              <form name="deleteInfForm" method="POST">
+              <input type="submit" name="deleteInfButton" value="Удалить" class="btn btn-danger">
+              {foreach from=$infsByArea item=infs key=area}
+                <fieldset>
+                  <legend>{$area}</legend>
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>Адрес</th>
+                      <th>Выбрать</th>
+                    </tr>
+                    {foreach from=$infs item=inf}
+                     <tr>
+                       <td>{$inf['address']}</td>
+                       <td><input type="checkbox" name="select_inf[]" value="{$inf['id_inf']}"></td>
+                     </tr>
+                    {/foreach}
+                  </table>
+                </fieldset>
+              {/foreach}
+            </div>
+            <div class="col-md-4">
+              <fieldset>
+                <legend>Добавить новую структуру</legend>
+                <form name="addNewInfForm" method="POST">
+                  <div class="form-group">
+                    <label>Район</label>
+                    <select name="area_name" class="form-control">
+                      {foreach from=$areas item=area}
+                        <option>{$area->getName()}</option>
+                      {/foreach}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" name="inf_address" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" name="addNewInfButton" class="btn btn-primary">
+                  </div>
+                </form>
+              </fieldset>
             </div>
           </div>
         </div>
@@ -394,7 +435,6 @@
         
       }
       
-      
       $("[name='rc_name_for_flat']").change(function(){
         var rc_name = this.value;
         
@@ -439,7 +479,6 @@
         });
         
       });
-      
     
     });
     
