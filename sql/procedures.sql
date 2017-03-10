@@ -7,6 +7,7 @@ DROP PROCEDURE IF EXISTS addHome;
 DROP PROCEDURE IF EXISTS addFlat;
 DROP PROCEDURE IF EXISTS changeStatusRC;
 DROP PROCEDURE IF EXISTS changeStatusFlat;
+DROP PROCEDURE IF EXISTS changePriceFlat;
 DROP PROCEDURE IF EXISTS getRCS;
 DROP PROCEDURE IF EXISTS getHomes;
 DROP PROCEDURE IF EXISTS getFlats;
@@ -68,6 +69,15 @@ BEGIN
 		INNER JOIN `home_flat` ON flats.id_flat=home_flat.id_flat
 		INNER JOIN `rc_home` ON home_flat.id_home=rc_home.id_home
 	SET `stat`=stat_flat
+		WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name) AND home_flat.id_home=(SELECT `id_home` FROM `homes` WHERE `address`=home_addr) AND  flats.number_flat=nf;
+END;
+
+CREATE PROCEDURE changePriceFlat(rc_name char(255), home_addr char(255), nf int, price int)
+BEGIN
+  UPDATE `home_flat`
+		INNER JOIN `flats` ON flats.id_flat=home_flat.id_flat
+		INNER JOIN `rc_home` ON home_flat.id_home=rc_home.id_home
+	SET `price_flat`=price
 		WHERE rc_home.id_rc=(SELECT `id_rc` FROM `rcs` WHERE `name`=rc_name) AND home_flat.id_home=(SELECT `id_home` FROM `homes` WHERE `address`=home_addr) AND  flats.number_flat=nf;
 END;
 

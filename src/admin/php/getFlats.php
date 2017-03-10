@@ -29,7 +29,7 @@
       echo "<td>".$flat->getCountRooms()."</td>";
       echo "<td>".($flat->getBalcony() == 1 ? "Есть" : "Нету")."</td>";
       echo "<td>".$flat->getPrice()."</td>";
-      echo "<td>".($flat->getStatus() == 1 ? "Не сдана" : "Сдана")."</td>";
+      echo "<td><select name='flt_stat[]'>".($flat->getStatus() == 1 ? "<option value='1'>Не сдана</option><option value='2'>Cдана</option>" : "<option value='2'>Сдана</option><option value='1'>Не сдана</option>")."</select></td>";
       echo "<td><input type='checkbox' name='select_flat[]' value='".$flat->getNumberFlat()."' class='form-control'></td>";
       echo "</tr>";
     }

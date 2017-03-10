@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-03-07 01:28:02
+/* Smarty version 3.1.29, created on 2017-03-10 12:42:56
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58bde272586738_57763678',
+  'unifunc' => 'content_58c27520396a97_37372839',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1488839281,
+      1 => 1489138788,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58bde272586738_57763678 ($_smarty_tpl) {
+function content_58c27520396a97_37372839 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,8 +51,6 @@ function content_58bde272586738_57763678 ($_smarty_tpl) {
       </div>
     </header>
     <hr>
-    
-    
     
     <div class="container-fluid">
       <ul class="nav nav-tabs">
@@ -559,14 +557,17 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_10_saved_item;
             </div>
             <div class="col-md-6">
               <label>Дом</label>
-              <select name="changeHome" class="form-control"></select>
+              <select name="changeHome" class="form-control">
+                <option></option>
+              </select>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-12">
               <form name="deleteFlatForm" method="POST">
-                <input type="submit" name="deleteFlatButton" value="Удалить">
+                <input type="submit" name="changeFlatButton" value="Изменить" class="btn btn-warning">
+                <input type="submit" name="deleteFlatButton" value="Удалить" class="btn btn-danger">
                 <table id="flatsByHome" class="table table-border"></table>
               </form>
             </div>

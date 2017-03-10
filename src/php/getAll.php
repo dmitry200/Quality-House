@@ -13,7 +13,7 @@
       $rc_text_status = $rc->getTextStatus();
       $rc_status = $rc->getStatus();
       $rc_count_houses = $rc->getCountHouses();
-      $rc_houses = $HM->getHouses($rc->getName());
+      $rc_houses = $HM->getHouses($rc->getName()) ?? 0;
       
       $rc_houses_flats = array();
       for ($i = 0; $i < count($rc_houses); $i++) {

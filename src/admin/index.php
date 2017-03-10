@@ -120,8 +120,21 @@
       }
       
       CTools::Redirect(THIS);
-      
     }
+    
+    if (!empty($_POST['changeFlatButton'])) {
+      $rc_name = htmlspecialchars($_POST['rc_name']);
+      $home_address = htmlspecialchars($_POST['home_address']);
+      $flt_stat = $_POST['flt_stat'];
+      $select_flat = $_POST['select_flat'];
+      
+      for ($i = 0; $i < count($select_flat); $i++) {
+        $FM->changeFlatStatus($rc_name, $home_address, $select_flat[$i], $flt_stat[$i]);
+      }
+      
+      CTools::Redirect(THIS);
+    }
+    
     
     $rcs = $RCM->getAll();
     $rcsByArea = array();
@@ -135,8 +148,8 @@
     $CT->assign("rcs", $RCM->getAll());
     $CT->assign("statutses", $RCM->getStatuses());
     
-    
     $CT->Show("index.tpl");
+  
   } else {
     CTools::Redirect("login.php");
   }

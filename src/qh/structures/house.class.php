@@ -76,7 +76,7 @@
     
     public function getFlats() : array
     {
-      return $this->flats;
+      return $this->flats ?? array();
     }
     
     public function setCountFreeFlats(int $count_free_flats)

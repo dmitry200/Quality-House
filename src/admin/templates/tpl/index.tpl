@@ -320,14 +320,17 @@
             </div>
             <div class="col-md-6">
               <label>Дом</label>
-              <select name="changeHome" class="form-control"></select>
+              <select name="changeHome" class="form-control">
+                <option></option>
+              </select>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="col-md-12">
               <form name="deleteFlatForm" method="POST">
-                <input type="submit" name="deleteFlatButton" value="Удалить">
+                <input type="submit" name="changeFlatButton" value="Изменить" class="btn btn-warning">
+                <input type="submit" name="deleteFlatButton" value="Удалить" class="btn btn-danger">
                 <table id="flatsByHome" class="table table-border"></table>
               </form>
             </div>
