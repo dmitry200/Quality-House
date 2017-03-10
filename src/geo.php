@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Гео</title>
+    <title>Карта</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="admin/css/bootstrap/bootstrap.css">
     <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"> </script>
@@ -62,11 +62,13 @@
         </div>
       </div>
       <input type="hidden" id="place" value="<?= $_GET['place']; ?>">
+      <input type="hidden" id="rc_name" value="<?= $_GET['rc_name']; ?>">
       
       <script type="text/javascript">
        
         var msc_map;
         var place = $("#place").val();
+        var rc_name = $("#rc_name").val();
         var center_coords = [];
         
         var addresses = $("[name='infs']");
@@ -92,8 +94,7 @@
           var geoPlace = ymaps.geocode(place);
           geoPlace.then(
             function (res){
-              center_coords = res.geoObjects.get(0).geometry.getCoordinates();
-              msc_map.geoObjects.add(res.geoObjects.get(0));
+              msc_map.balloon.open(res.geoObjects.get(0).geometry.getCoordinates(), {contentHeader: rc_name})
             },
             function (err) {
               alert('Error');
