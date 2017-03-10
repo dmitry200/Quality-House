@@ -32,6 +32,9 @@
       <div class="my">
         <div class="row">
           <h1 align="center">Quality House</h1>
+          <nav>
+            <a href="docs/Quality House.html" target="_blank">Руководство</a>
+          </nav>
         </div>
         <hr>
         <div id="info" class="row">

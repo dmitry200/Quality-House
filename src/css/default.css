@@ -84,3 +84,8 @@ fieldset{
 .one_flat{
   
 }
+
+nav{
+  display: flex;
+  justify-content: space-around;
+}

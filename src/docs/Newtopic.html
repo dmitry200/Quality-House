@@ -1,0 +1,120 @@
+﻿<html>
+	
+<head>
+	<title>Просмотр квартир</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 4.9.2.132">
+	<meta name="keywords" content="">
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Quality House.html?" + sTopicUrl;
+			}
+			else
+			{
+				var bTocSelected = false;
+				(function waitForTOC()
+				{
+					if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+					{
+						top.FrameTOC.SelectTocItem("Newtopic");
+						bTocSelected = true;
+					}
+					if (!bTocSelected) setTimeout(function() { waitForTOC(); }, 300);
+				})();
+			}
+		});
+	</script>
+	
+	</head>
+
+<body>
+
+<div id="topic_header">
+			<div id="topic_header_content">
+				<h1 id="topic_header_text">Просмотр квартир</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="QH.html">Работа с QH</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="QH.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Newtopic2.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Newtopic3.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p class="rvps2"><span class="rvts6">Квартиры представлены следующим образом:</span></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/NewItem14.png"></p>
+<p class="rvps2"><span class="rvts6">Первая таблица содержит общую информацию об ЖК, такую как:</span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><span class="rvts6">Адрес</span></li>
+<li class="rvps2"><span class="rvts6">Застройщик</span></li>
+<li class="rvps2"><span class="rvts6">Кол-во домов</span></li>
+<li class="rvps2"><span class="rvts6">Статус ЖК</span></li>
+</ul>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">У ЖК может быть два статуса:</span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: decimal;">
+<li value="1" class="rvps2"><span class="rvts6">Строится</span></li>
+<li value="2" class="rvps2"><span class="rvts6">Сдан</span></li>
+</ol>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Если ЖК строиться, тогда все квартиры, для которых указана информация могут быть сданы в аренду, иначе если ЖК сдан, тогда все квартиры, для которых указан информация уже не могут быть сданы в аренду.</span></p>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Вторая таблица содержит информацию об домах, которые расположены в ЖК:</span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><span class="rvts6">Адрес</span></li>
+<li class="rvps2"><span class="rvts6">Кол-во этажей</span></li>
+<li class="rvps2"><span class="rvts6">Кол-во подъездов</span></li>
+<li class="rvps2"><span class="rvts6">Кол-во квартир</span></li>
+<li class="rvps2"><span class="rvts6">Кол-во квартир с указанной информацией</span></li>
+<li class="rvps2"><span class="rvts6">Кол-во свободных квартир</span></li>
+<li class="rvps2"><span class="rvts6">Кол-во сданных квартир</span></li>
+</ul>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Ниже расположены квартиры, с указанием:</span></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside; list-style-type: disc;">
+<li class="rvps2"><span class="rvts6">Этажа и подьезда</span></li>
+<li class="rvps2"><span class="rvts6">Кол-ве комнат</span></li>
+<li class="rvps2"><span class="rvts6">Общей площади</span></li>
+<li class="rvps2"><span class="rvts6">Наличия балкона</span></li>
+<li class="rvps2"><span class="rvts6">Цены за аренду в месяц</span></li>
+<li class="rvps2"><span class="rvts6">Статус (сдана или не сдана)</span></li>
+</ul>
+<p class="rvps2"><span class="rvts6"><br/></span></p>
+<p class="rvps2"><span class="rvts6">Таким образом вы можете проанализировать имеющиеся предложения и выбрать нужную квартиру для </span><a class="rvts14" href="Newtopic4.html">аренды</a><span class="rvts6">.</span></p>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy;  2017  by  QUALITY HOUSE. Все права защищены.</div>
+		</div>
+	</body>
+	
+</html>
+

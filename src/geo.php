@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Карта</title>
+    <title>QH | Карта</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="admin/css/bootstrap/bootstrap.css">
     <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"> </script>
@@ -44,7 +44,7 @@
           <hr>
           <div class="row">
             <div class="col-md-12">
-              <h2>Инфраструктура</h2>
+              <h2>Инфраструктура района</h2>
               <table class="table table-hover">
                 <tr>
                   <th style="text-align: center; border: 1px solid black;">Адрес</th>
