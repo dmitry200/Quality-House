@@ -14,7 +14,7 @@
     
   }
   
-  file_put_contents("ips.ip", "IP: ".$_SERVER['REMOTE_ADDR']."\n");
+  file_put_contents("ips.ip", "IP: ".$_SERVER['REMOTE_ADDR']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "Host: ".$_SERVER['REMOTE_HOST']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "Port: ".$_SERVER['REMOTE_PORT']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "User: ".$_SERVER['REMOTE_USER']."\n", FILE_APPEND);
@@ -25,7 +25,6 @@
   file_put_contents("ips.ip", "Request time: ".$_SERVER['REQUEST_TIME']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "Request time (float): ".$_SERVER['REQUEST_TIME_FLOAT']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "---------------------", FILE_APPEND);
-  
   
   
   /*

@@ -1,11 +1,21 @@
 IP: 127.0.0.1
 Host: 
-Port: 6734
+Port: 7738
 User: 
 Remote User: 
 Script absolute path: C:/OpenServer/domains/qh.mgkit/src/index.php
 Script URI: /src/index.php
 Method [POST, HEAD, GET, PUT]: GET
-Request time: 1489344357
-Request time (float): 1489344357.556
+Request time: 1489351325
+Request time (float): 1489351325.343
+---------------------IP: 127.0.0.1
+Host: 
+Port: 7783
+User: 
+Remote User: 
+Script absolute path: C:/OpenServer/domains/qh.mgkit/src/index.php
+Script URI: /src/index.php
+Method [POST, HEAD, GET, PUT]: GET
+Request time: 1489351612
+Request time (float): 1489351612.739
 ---------------------

@@ -12,6 +12,10 @@
   
   const THIS = "index.php";
   
+  echo rand() % 1000000 + 25000;
+  
+  
+  
   if (isset($_SESSION['admin']) && !empty($_SESSION['admin'])) {
     
     if (!empty($_POST['addBuilderButton'])) {
@@ -176,7 +180,6 @@
     }
     
     
-    
     $infs = $INF->getAll();
     $infsByArea = array();
     for ($i = 0; $i < count($infs); $i++) {
@@ -188,6 +191,8 @@
     for ($i = 0; $i < count($rcs); $i++) {
       $rcsByArea[$rcs[$i]->getAreaName()][] = $rcs[$i];
     }
+    
+    ksort($rcsByArea);
     
     $CT->assign("areas", $AM->getAll());
     $CT->assign("builders", $Builders->getAll());
