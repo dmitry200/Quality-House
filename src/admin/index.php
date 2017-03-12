@@ -11,8 +11,61 @@
   use QH\Structures\Flat;
   
   const THIS = "index.php";
+  /*
+  //echo ;
   
-  echo rand() % 1000000 + 25000;
+  $all_rcs = $RCM->getAll();
+  $all_rcs_names = array();
+  
+  foreach ($all_rcs as $one_rc) {
+    $all_rcs_names[] = $one_rc->getName();
+  }
+  
+  $pids = array();
+  
+  
+  for ($i = 0; $i < count($all_rcs_names); $i++) {
+    
+    $houses = $HM->getHouses($all_rcs_names[$i]);
+    
+    foreach ($houses as $house) {
+      $max_floors = $house->getCountFloors();
+      $max_porch = $house->getCountPorch();
+      echo "Flats: ".$house->getCountFlats()."<br>";
+      
+      for ($j = 1; $j <= $house->getCountFlats()/2; $j++) {
+          
+          $flat = new Flat(
+            $all_rcs_names[$i], 
+            $house->getAddress(), 
+            (rand() % $max_floors+1),
+            (rand() % $max_porch+1),
+            (rand() % 5+1),
+            (rand() % 70),
+            (rand() % 1000000 + 25000),
+            $j
+          );
+          
+          $flat->setBalcony(( (rand() % 1) ? true : false ));
+          
+          $FM->add($flat);
+      }
+    }
+    
+    echo $all_rcs_names[$i]."<br>";
+  }
+  
+  */
+  function generatePassword($length = 8){
+    $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+    $numChars = strlen($chars);
+    $string = '';
+    for ($i = 0; $i < $length; $i++) {
+      $string .= substr($chars, rand(1, $numChars) - 1, 1);
+    }
+    return $string;
+  }
+  
   
   
   
