@@ -31,7 +31,14 @@
     
     public function remove($house_address) : bool
     {
+      $remove_query = $this->dbc()->prepare("DELETE h FROM `homes` h
+          INNER JOIN `rc_home` rh ON h.id_home=rh.id_home
+          INNER JOIN `rcs` r ON rh.id_rc=r.id_rc
+        WHERE h.address=:home_addr AND r.name=:rc_name");
+    
       
+      
+      return $remove_query->execute($house_address);
     }
     
     public function getAll()

@@ -34,6 +34,16 @@
       
     }
     
+    if (!empty($_POST['deleteAreaButton'])) {
+      $select_area = $_POST['select_area'];
+      
+      for ($i = 0; $i < count($select_area); $i++) {
+        $AM->remove($select_area[$i]);
+      }
+      
+      CTools::Redirect(THIS);
+    }
+    
     if (!empty($_POST['addRCButton'])) {
       $rc_area_name = htmlspecialchars($_POST['rc_area_name']);
       $rc_name = htmlspecialchars($_POST['rc_name']);
@@ -152,6 +162,20 @@
       
       CTools::var_dump($infsByArea);
     }
+    
+    
+    if (!empty($_POST['deleteHouseButton'])) {
+      $rc_name = $_POST['rc_name'];
+      $select_d_house = $_POST['select_d_house'];
+      
+      for ($i = 0; $i < count($select_d_house); $i++) {
+        $HM->remove([":rc_name" => $rc_name, ":home_addr" => $select_d_house[$i]]);
+      }
+      
+      CTools::Redirect(THIS);
+    }
+    
+    
     
     $infs = $INF->getAll();
     $infsByArea = array();

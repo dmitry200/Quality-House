@@ -33,6 +33,7 @@
 	<body>
     <br><br><br><br><br>
     <form name="login_form" class="block" method="POST">
+      <h1>Панель управления QH</h1>
       <div class="form-group">
         <label>Логин</label>
         <input type="text" name="login" required>

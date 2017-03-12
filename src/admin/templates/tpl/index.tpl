@@ -17,8 +17,8 @@
         <div class="col-md-12">
           <nav>
             <a href="#">Руководство</a>
-            <a href="#">Видеоруководство</a>
-            <a href="#">Выйти</a>
+            <a href="video.php">Видеоруководство</a>
+            <a href="php/logout.php">Выйти</a>
           </nav>
         </div>
       </div>
@@ -28,6 +28,7 @@
     <div class="container-fluid">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#rcs" data-toggle="tab">Жилые комплексы</a></li>
+        <li><a href="#houses" data-toggle="tab">Дома</a></li>
         <li><a href="#flats" data-toggle="tab">Квартиры</a></li>
         <li><a href="#inf_structure" data-toggle="tab">Инфраструктура</a></li>
       </ul>
@@ -103,18 +104,22 @@
                       </div>
                       <div id="areas" class="panel-collapse collapse">
                         <div class="panel-body">
-                          <table class="table table-bordered">
-                            <tr>
-                              <th>Название</th>
-                              <th>Выбрать</th>
-                            </tr>
-                            {foreach from=$areas item=area}
+                          <form name="deleteAreaForm" method="POST">
+                            <input type="submit" name="deleteAreaButton" value="Удалить" class="btn btn-danger">
+                            <hr>
+                            <table class="table table-bordered">
                               <tr>
-                                <td>{$area->getName()}</td>
-                                <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area" value="{$area->getName()}" required></td>
+                                <th>Название</th>
+                                <th>Выбрать</th>
                               </tr>
-                            {/foreach}
-                          </table>
+                              {foreach from=$areas item=area}
+                                <tr>
+                                  <td>{$area->getName()}</td>
+                                  <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area[]" value="{$area->getName()}" required></td>
+                                </tr>
+                              {/foreach}
+                            </table>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -307,6 +312,29 @@
             </div>
           </div>
         </div>
+        <div class="tab-pane" id="houses">
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Жилой комплекс</label>
+              <select name="changeRCForHome" class="form-control">
+                {foreach from=$rcs item=rc}
+                  <option>{$rc->getName()}</option>
+                {/foreach}
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <br>
+              <form name="deleteHouseForm" method="POST">
+                <input type="submit" name="deleteHouseButton" value="Удалить" class="btn btn-danger">
+                <hr>
+                <table id="housesByRC" class="table table-border"></table>
+              </form>
+            </div>
+          </div>
+        </div>
         <div class="tab-pane" id="flats">
           <br>
           <div class="row">
@@ -475,6 +503,20 @@
           data: "rc_name=" + rc_name + "&home_address=" + home_address,
           success: function(replay) {
             $("#flatsByHome").html(replay);
+          }
+        });
+        
+      });
+      
+      $("[name='changeRCForHome']").change(function(){
+        var rc_name = $("[name='changeRCForHome']").val();
+        
+        $.ajax({
+          url: "php/getHousesByRC.php",
+          type: "POST",
+          data: "rc_name=" + rc_name,
+          success: function(replay) {
+            $("#housesByRC").html(replay);
           }
         });
         
