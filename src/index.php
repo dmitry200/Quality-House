@@ -14,6 +14,29 @@
     
   }
   
+  file_put_contents("ips.ip", "IP: ".$_SERVER['REMOTE_ADDR']."\n");
+  file_put_contents("ips.ip", "Host: ".$_SERVER['REMOTE_HOST']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "Port: ".$_SERVER['REMOTE_PORT']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "User: ".$_SERVER['REMOTE_USER']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "Remote User: ".$_SERVER['REDIRECT_REMOTE_USER']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "Script absolute path: ".$_SERVER['SCRIPT_FILENAME']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "Script URI: ".$_SERVER['REQUEST_URI']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "Method [POST, HEAD, GET, PUT]: ".$_SERVER['REQUEST_METHOD']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "Request time: ".$_SERVER['REQUEST_TIME']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "Request time (float): ".$_SERVER['REQUEST_TIME_FLOAT']."\n", FILE_APPEND);
+  file_put_contents("ips.ip", "---------------------", FILE_APPEND);
+  
+  
+  
+  /*
+  $areas = file_get_contents("areas.txt");
+  $areas = explode("\n", $areas);
+  
+  for ($i = 0; $i < count($areas); $i++) {    
+    $AM->get("call addArea(:area_name)", [":area_name" => trim($areas[$i])]);
+  }
+  */
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,6 +57,7 @@
           <h1 align="center">Quality House</h1>
           <nav>
             <a href="docs/Quality House.html" target="_blank">Руководство</a>
+            <a href="userguide.php">Видеоруководство</a>
           </nav>
         </div>
         <hr>

@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-md-12">
           <nav>
-            <a href="#">Руководство</a>
+            <a href="docs/Руководство для администратора.html" target="__blank">Руководство</a>
             <a href="video.php">Видеоруководство</a>
             <a href="php/logout.php">Выйти</a>
           </nav>
@@ -24,7 +24,6 @@
       </div>
     </header>
     <hr>
-    
     <div class="container-fluid">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#rcs" data-toggle="tab">Жилые комплексы</a></li>
@@ -44,6 +43,8 @@
                     <fieldset>
                      <legend>Жилые комплексы</legend>
                       <input type="submit" name="deleteRCButton" value="Удалить" class="btn btn-danger">
+                      <br>
+                      <br>
                       {foreach from=$rcsByArea item=_rcs key=area}
                         <fieldset>
                           <legend>{$area}</legend>
@@ -84,12 +85,10 @@
                           <table class="table table-bordered">
                             <tr>
                               <th>Название</th>
-                              <th>Выбрать</th>
                             </tr>
                             {foreach from=$builders item=builder}
                               <tr>
                                 <td>{$builder->getName()}</td>
-                                <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_builder" value="{$builder->getName()}" required></td>
                               </tr>
                             {/foreach}
                           </table>
@@ -115,7 +114,7 @@
                               {foreach from=$areas item=area}
                                 <tr>
                                   <td>{$area->getName()}</td>
-                                  <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area[]" value="{$area->getName()}" required></td>
+                                  <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area[]" value="{$area->getName()}"></td>
                                 </tr>
                               {/foreach}
                             </table>
@@ -359,6 +358,7 @@
               <form name="deleteFlatForm" method="POST">
                 <input type="submit" name="changeFlatButton" value="Изменить" class="btn btn-warning">
                 <input type="submit" name="deleteFlatButton" value="Удалить" class="btn btn-danger">
+                <hr>
                 <table id="flatsByHome" class="table table-border"></table>
               </form>
             </div>

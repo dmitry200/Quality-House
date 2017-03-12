@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2017-03-12 13:53:21
+/* Smarty version 3.1.29, created on 2017-03-12 19:23:14
   from "C:\OpenServer\domains\qh.mgkit\src\admin\templates\tpl\index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_58c528a190f064_28128384',
+  'unifunc' => 'content_58c575f2206827_53637707',
   'file_dependency' => 
   array (
     'f6f96239bcf8ea2869f639ebb62656b945ea87a6' => 
     array (
       0 => 'C:\\OpenServer\\domains\\qh.mgkit\\src\\admin\\templates\\tpl\\index.tpl',
-      1 => 1489315892,
+      1 => 1489335793,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_58c528a190f064_28128384 ($_smarty_tpl) {
+function content_58c575f2206827_53637707 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@ function content_58c528a190f064_28128384 ($_smarty_tpl) {
       <div class="row">
         <div class="col-md-12">
           <nav>
-            <a href="#">Руководство</a>
+            <a href="docs/Руководство для администратора.html" target="__blank">Руководство</a>
             <a href="video.php">Видеоруководство</a>
             <a href="php/logout.php">Выйти</a>
           </nav>
@@ -71,6 +71,8 @@ function content_58c528a190f064_28128384 ($_smarty_tpl) {
                     <fieldset>
                      <legend>Жилые комплексы</legend>
                       <input type="submit" name="deleteRCButton" value="Удалить" class="btn btn-danger">
+                      <br>
+                      <br>
                       <?php
 $_from = $_smarty_tpl->tpl_vars['rcsByArea']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -156,7 +158,6 @@ $_smarty_tpl->tpl_vars['area'] = $__foreach__rcs_0_saved_key;
                           <table class="table table-bordered">
                             <tr>
                               <th>Название</th>
-                              <th>Выбрать</th>
                             </tr>
                             <?php
 $_from = $_smarty_tpl->tpl_vars['builders']->value;
@@ -173,8 +174,6 @@ $__foreach_builder_2_saved_local_item = $_smarty_tpl->tpl_vars['builder'];
                               <tr>
                                 <td><?php echo $_smarty_tpl->tpl_vars['builder']->value->getName();?>
 </td>
-                                <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_builder" value="<?php echo $_smarty_tpl->tpl_vars['builder']->value->getName();?>
-" required></td>
                               </tr>
                             <?php
 $_smarty_tpl->tpl_vars['builder'] = $__foreach_builder_2_saved_local_item;
@@ -219,7 +218,7 @@ $__foreach_area_3_saved_local_item = $_smarty_tpl->tpl_vars['area'];
                                   <td><?php echo $_smarty_tpl->tpl_vars['area']->value->getName();?>
 </td>
                                   <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_area[]" value="<?php echo $_smarty_tpl->tpl_vars['area']->value->getName();?>
-" required></td>
+"></td>
                                 </tr>
                               <?php
 $_smarty_tpl->tpl_vars['area'] = $__foreach_area_3_saved_local_item;
@@ -614,6 +613,7 @@ $_smarty_tpl->tpl_vars['rc'] = $__foreach_rc_11_saved_item;
               <form name="deleteFlatForm" method="POST">
                 <input type="submit" name="changeFlatButton" value="Изменить" class="btn btn-warning">
                 <input type="submit" name="deleteFlatButton" value="Удалить" class="btn btn-danger">
+                <hr>
                 <table id="flatsByHome" class="table table-border"></table>
               </form>
             </div>
