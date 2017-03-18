@@ -13,9 +13,22 @@ DROP PROCEDURE IF EXISTS getHomes;
 DROP PROCEDURE IF EXISTS getFlats;
 DROP PROCEDURE IF EXISTS getCountHomes;
 DROP PROCEDURE IF EXISTS deleteFlatFromHome;
+DROP PROCEDURE IF EXISTS searchFlats;
 DROP FUNCTION IF EXISTS isFlatExists;
 
 DELIMITER //
+
+CREATE PROCEDURE searchFlats(count_rooms int, balcony bool, square int, price int)
+BEGIN
+	select *
+	FROM `rcs` r
+		INNER JOIN `rc_home` rc ON r.id_rc=rc.id_rc
+		INNER JOIN `homes` h ON rc.id_home=h.id_home
+		INNER JOIN `home_flat` hf ON h.id_home=hf.id_home
+		INNER JOIN `flats` f ON hf.id_flat=f.id_flat
+	WHERE f.count_rooms<=count_rooms AND f.balcony=balcony AND f.square<=square AND hf.price_flat<=price
+	ORDER BY r.name;
+END;
 
 CREATE PROCEDURE addArea(area_name char(255))
 BEGIN

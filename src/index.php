@@ -57,6 +57,7 @@
           <nav>
             <a href="docs/Quality House.html" target="_blank">Руководство</a>
             <a href="userguide.php">Видеоруководство</a>
+            <a href="search.php">Поиск</a>
           </nav>
         </div>
         <hr>
