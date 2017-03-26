@@ -11,19 +11,19 @@
   use QH\Structures\Flat;
   
   const THIS = "index.php";
-  /*
-  //echo ;
+  
+  
   
   $all_rcs = $RCM->getAll();
-  $all_rcs_names = array();
+  $all_rcs_names = array(); 
   
   foreach ($all_rcs as $one_rc) {
     $all_rcs_names[] = $one_rc->getName();
   }
+	
+	
   
   $pids = array();
-  
-  
   for ($i = 0; $i < count($all_rcs_names); $i++) {
     
     $houses = $HM->getHouses($all_rcs_names[$i]);
@@ -55,7 +55,6 @@
     echo $all_rcs_names[$i]."<br>";
   }
   
-  */
   function generatePassword($length = 8){
     $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
     $numChars = strlen($chars);

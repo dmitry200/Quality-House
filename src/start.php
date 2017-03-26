@@ -25,5 +25,7 @@
   $HM = new Houses($DB);
   $FM = new Flats($DB);
   $INF = new Infs($DB);
-    
+  
+	
+	
 ?>
