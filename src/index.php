@@ -1,19 +1,20 @@
 <?php
-  
+
   require_once "start.php";
-  
+
   if (!empty($_POST['changeFlatStatusButton'])) {
     $rc_name = htmlspecialchars($_POST['rc_name']);
     $home_address = htmlspecialchars($_POST['home_address']);
     $nf = htmlspecialchars($_POST['nf']);
     $status = htmlspecialchars($_POST['status']);
-    
+
     if ($FM->changeFlatStatus($rc_name, $home_address, $nf, $status)) {
       CTools::Redirect("index.php");
     }
-    
+
   }
-  
+
+  /*
   file_put_contents("ips.ip", "IP: ".$_SERVER['REMOTE_ADDR']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "Host: ".$_SERVER['REMOTE_HOST']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "Port: ".$_SERVER['REMOTE_PORT']."\n", FILE_APPEND);
@@ -24,18 +25,16 @@
   file_put_contents("ips.ip", "Method [POST, HEAD, GET, PUT]: ".$_SERVER['REQUEST_METHOD']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "Request time: ".$_SERVER['REQUEST_TIME']."\n", FILE_APPEND);
   file_put_contents("ips.ip", "Request time (float): ".$_SERVER['REQUEST_TIME_FLOAT']."\n", FILE_APPEND);
-  file_put_contents("ips.ip", "---------------------", FILE_APPEND);
-  
-  
-  /*
+  file_put_contents("ips.ip", "---------------------\n", FILE_APPEND);
+
   $areas = file_get_contents("areas.txt");
   $areas = explode("\n", $areas);
-  
-  for ($i = 0; $i < count($areas); $i++) {    
+
+  for ($i = 0; $i < count($areas); $i++) {
     $AM->get("call addArea(:area_name)", [":area_name" => trim($areas[$i])]);
   }
   */
-  
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +49,7 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<div id="map" style="border: 1px solid black;"></div>
+			<div id="map"></div>
       <div class="my">
         <div class="row">
           <h1 align="center">Quality House</h1>
@@ -62,17 +61,17 @@
         </div>
         <hr>
         <div id="info" class="row">
-          
+
         </div>
       </div>
 		</div>
-    
+
     <script type="text/javascript">
-      
+
       function onAreaClick(name) {
         var str = new String(name);
         var area_name = str.substr(str.indexOf("#")+1, str.length);
-        
+
         $.ajax({
           url: "php/getAll.php",
           type: "POST",
@@ -82,10 +81,10 @@
             $("#info").html(replay);
           }
         });
-        
+
       }
-      
+
     </script>
-    
+
 	</body>
 </html>

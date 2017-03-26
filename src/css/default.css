@@ -3,10 +3,6 @@ body {
 	flex-direction: column;
 }
 
-.wrapper {
-	
-}
-
 #map {
 	float:left;
 	clear:both;
@@ -19,7 +15,7 @@ body {
 	background:#7BB9F0;
 	font-size:24px;
 	font-weight:bold;
-	-moz-border-radius:8px;
+	-moz-border-radius: 8px;
 }
 
 .point .close {
@@ -84,11 +80,21 @@ fieldset legend {
   justify-content: space-around;
 }
 
-.one_flat{
-  
-}
-
 nav{
   display: flex;
   justify-content: space-around;
+}
+
+nav a {
+	text-decoration: none;
+	border: 1px solid black;
+	padding: 10px;
+	transition-property: all;;
+	transition-duration: 0.3s;
+}
+
+nav a:hover{
+	background-color: #80C342;
+	color: white;
+	transform: translate(0px, 4px);
 }

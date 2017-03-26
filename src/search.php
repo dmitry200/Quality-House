@@ -1,7 +1,7 @@
 <?php
-  
+
   require_once "start.php";
-  
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,32 +10,51 @@
 		<meta charset="utf-8">
 		<script src="js/jquery.js" type="text/javascript"></script>
     <style rel="stylesheet" type="text/css">
-      
+
       nav{
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
       }
-      
+
       fieldset{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
       }
-      
+
       .info{
-        
+
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
       }
-      
+
       .one_flat{
         margin: 10px;
         padding: 5px;
         border: 1px solid black;
       }
-      
+
+      nav {
+        display: flex;
+        justify-content: space-around;
+      }
+
+
+      nav a {
+      	text-decoration: none;
+      	border: 1px solid black;
+      	padding: 10px;
+      	transition-property: all;;
+      	transition-duration: 0.3s;
+      }
+
+      nav a:hover{
+      	transform: translate(0px, 4px);
+      }
+
+
     </style>
 	</head>
 	<body>
@@ -66,16 +85,16 @@
         </div>
       </div>
 		</div>
-    
+
     <script type="text/javascript">
-      
+
       $("[name='searchFlatsButton']").click(function(){
-        
+
         var count_rooms = $("[name='count_rooms']").val();
         var balcony = $("[name='balcony']").val();
         var square = $("[name='square']").val();
         var price = $("[name='price']").val();
-        
+
         $.ajax({
           url: "php/search.php",
           type: "POST",
@@ -85,11 +104,11 @@
             $("#info").html(replay);
           }
         });
-        
+
       });
-      
-      
+
+
     </script>
-    
+
 	</body>
 </html>
