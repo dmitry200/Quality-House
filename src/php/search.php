@@ -17,28 +17,29 @@
   {
     $result[$data[$i]['name']] = $data;
   }
- 
-  
-  foreach ($result as $key => $res) {
-    echo "<fieldset>";
-    echo "<legend>".$key."</legend>";
-    echo "<div class='info'>";
-    for ($i = 0; $i < count($res); $i++) {
-      echo "<div class='one_flat'>";
-      echo "<p>Дом: <small>".$data[$i]['address']."</small></p>";
-      echo "<p>Подъезд: ".$data[$i]['porch']."</p>";
-      echo "<p>Этаж: ".$data[$i]['floor']."</p>";
-      echo "<p>Комнат: ".$data[$i]['count_rooms']."</p>";
-      echo "<p>Общая площадь: ".$data[$i]['square']." кв. м.</p>";
-      echo "<p>Балкон: ".($data[$i]['balcony'] == 1 ? "Есть" : "Нету")."</p>";
-      echo "<p>Цена аренды (в месяц): ".$data[$i]['price']." руб.</p>";
-      echo "<p>Статус: ".($data[$i]['stat'] == 1 ? "Не сдано" : "Сдано")."</p>";
-      echo "</div>";
-    }
-    echo "</div>";
-    echo "</fieldset>";
-  }
-    
-  
+	
+	if (!empty($result)) {
+		
+		foreach ($result as $key => $res) {
+			echo "<fieldset>";
+			echo "<legend>".$key."</legend>";
+			echo "<div class='info'>";
+			for ($i = 0; $i < count($res); $i++) {
+				echo "<div class='one_flat'>";
+				echo "<p>Дом: <small>".$data[$i]['address']."</small></p>";
+				echo "<p>Подъезд: ".$data[$i]['porch']."</p>";
+				echo "<p>Этаж: ".$data[$i]['floor']."</p>";
+				echo "<p>Комнат: ".$data[$i]['count_rooms']."</p>";
+				echo "<p>Общая площадь: ".$data[$i]['square']." кв. м.</p>";
+				echo "<p>Балкон: ".($data[$i]['balcony'] == 1 ? "Есть" : "Нету")."</p>";
+				echo "<p>Цена аренды (в месяц): ".$data[$i]['price']." руб.</p>";
+				echo "<p>Статус: ".($data[$i]['stat'] == 1 ? "Не сдано" : "Сдано")."</p>";
+				echo "</div>";
+			}
+			echo "</div>";
+			echo "</fieldset>";
+		}
+		
+	}
   
 ?>
