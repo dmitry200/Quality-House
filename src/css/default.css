@@ -98,3 +98,17 @@ nav a:hover{
 	color: white;
 	transform: translate(0px, 4px);
 }
+
+#menu {
+	display: flex;
+	justify-content: space-around;
+}
+
+table tr th {
+	text-align: center;
+}
+
+.one_flat {
+	border: 1px solid;
+	padding: 5px;
+}

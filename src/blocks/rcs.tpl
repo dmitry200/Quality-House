@@ -1,7 +1,7 @@
 <fieldset>
   <legend><h4><?= $rc_name; ?></h4></legend>
   <div class="about_rc">
-    <table border="1" style="text-align: center;" width="100%">
+    <table border="1" class="table table-bordered" style="text-align: center;" width="100%">
       <tr>
         <th>Адрес</th>
         <th>Застройщик</th>
@@ -17,7 +17,7 @@
     </table>
     <hr>
     <h3>Дома</h3>
-    <table border="1" style="text-align: center;" width="100%">
+    <table border="1" class="table table-bordered" style="text-align: center;" width="100%">
       <tr>
         <th>Адрес</th>
         <th>Этажей</th>
@@ -54,7 +54,7 @@
         echo "<div class='flats'>";
         foreach ($rc_house->getFlats() as $one_flat) {
           echo "<div class='one_flat'>";
-          echo "<h4>".$one_flat->getNumberFlat()."</h4>";
+          echo "<h4 align='center'>".$one_flat->getNumberFlat()."</h4><hr>";
           echo "<p>Подъезд: ".$one_flat->getPorch()."</p>";
           echo "<p>Этаж: ".$one_flat->getFloor()."</p>";
           echo "<p>Комнат: ".$one_flat->getCountRooms()."</p>";
@@ -68,8 +68,8 @@
             echo "<input type='hidden' name='rc_name' value='".$one_flat->getRCName()."'>";
             echo "<input type='hidden' name='home_address' value='".$one_flat->getHomeAddress()."'>";
             echo "<input type='hidden' name='nf' value='".$one_flat->getNumberFlat()."'>";
-            echo "<input type='hidden' name='status' value='2'>";
-            echo "<input type='submit' name='changeFlatStatusButton' value='Арендовать'>";        
+            echo "<input type='hidden' name='status' value='2'><hr>";
+            echo "<p style='text-align: center;'><input type='submit' name='changeFlatStatusButton' value='Арендовать' class='btn btn-primary'></p>";        
             echo "</form>";
           }
           

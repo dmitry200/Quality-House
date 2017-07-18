@@ -3,10 +3,10 @@
 	<head>
 		<title>Панель администратора</title>
 		<meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
 	</head>
 	<body>
     <header class="container">
@@ -40,35 +40,39 @@
               <div class="row">
                 <div class="col-md-8">
                   <form name="deleteRCForm" method="POST">
+				  {if $rcsByArea != NULL}
                     <fieldset>
                      <legend>Жилые комплексы</legend>
                       <input type="submit" name="deleteRCButton" value="Удалить" class="btn btn-danger">
                       <br>
                       <br>
-                      {foreach from=$rcsByArea item=_rcs key=area}
-                        <fieldset>
-                          <legend>{$area}</legend>
-                          <table class="table table-bordered">
-                            <tr>
-                              <th>Название</th>
-                              <th>Застройщик</th>
-                              <th>Адрес</th>
-                              <th>Статус</th>
-                              <th>Выбрать</th>
-                            </tr>
-                            {foreach from=$_rcs item=rc}
-                             <tr>
-                               <td>{$rc->getName()}</td>
-                               <td>{$rc->getBuilder()}</td>
-                               <td>{$rc->getAddress()}</td>
-                               <td>{$rc->getTextStatus()}</td>
-                               <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="{$rc->getName()}"></td>
-                             </tr>
-                            {/foreach}
-                          </table>
-                        </fieldset>
-                      {/foreach}
+						  {foreach from=$rcsByArea item=_rcs key=area}
+							<fieldset>
+							  <legend>{$area}</legend>
+							  <table class="table table-bordered">
+								<tr>
+								  <th>Название</th>
+								  <th>Застройщик</th>
+								  <th>Адрес</th>
+								  <th>Статус</th>
+								  <th>Выбрать</th>
+								</tr>
+								{foreach from=$_rcs item=rc}
+								 <tr>
+								   <td>{$rc->getName()}</td>
+								   <td>{$rc->getBuilder()}</td>
+								   <td>{$rc->getAddress()}</td>
+								   <td>{$rc->getTextStatus()}</td>
+								   <td style="display: flex; justify-content: center;"><input type="checkbox" name="select_rc[]" value="{$rc->getName()}"></td>
+								 </tr>
+								{/foreach}
+							  </table>
+							</fieldset>
+						  {/foreach}
                     </fieldset>
+				  {else}
+					<h1>ЖК не добавлены</h1>
+				  {/if}
                   </form>
                 </div>
                 <div class="col-md-4">
@@ -82,6 +86,7 @@
                       </div>
                       <div id="builders" class="panel-collapse collapse">
                         <div class="panel-body">
+						{if $builders != NULL}
                           <table class="table table-bordered">
                             <tr>
                               <th>Название</th>
@@ -92,6 +97,9 @@
                               </tr>
                             {/foreach}
                           </table>
+						{else}
+							<h3>Застройщики не добвлены</h3>
+						{/if}
                         </div>
                       </div>
                     </div>
@@ -103,6 +111,7 @@
                       </div>
                       <div id="areas" class="panel-collapse collapse">
                         <div class="panel-body">
+						{if $areas != NULL}
                           <form name="deleteAreaForm" method="POST">
                             <input type="submit" name="deleteAreaButton" value="Удалить" class="btn btn-danger">
                             <hr>
@@ -119,6 +128,9 @@
                               {/foreach}
                             </table>
                           </form>
+						{else}
+							<h3>Районы не добвлены</h3>
+						{/if}
                         </div>
                       </div>
                     </div>

@@ -5,11 +5,11 @@
 	abstract class QH
 	{
 		private $DBC;
-        
-    function __construct(\PDO $dbc)
-    {
-        $this->DBC = $dbc;
-    }
+			
+		function __construct(\PDO $dbc)
+		{
+			$this->DBC = $dbc;
+		}
 		
 		public function dbc()
 		{
